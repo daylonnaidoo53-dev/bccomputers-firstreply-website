@@ -1,0 +1,32 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Leads collection: Public write-only for inbound quote/enquiry submissions
+    match /leads/{leadId} {
+      // Allow creation of a new lead if required fields are provided with sane data types and lengths
+      allow create: if request.resource.data.keys().hasAll(['businessName', 'contactName', 'phone', 'email', 'tier', 'status', 'createdAt'])
+                   && request.resource.data.businessName is string 
+                   && request.resource.data.businessName.size() > 0 
+                   && request.resource.data.businessName.size() <= 200
+                   && request.resource.data.contactName is string 
+                   && request.resource.data.contactName.size() > 0 
+                   && request.resource.data.contactName.size() <= 100
+                   && request.resource.data.phone is string 
+                   && request.resource.data.phone.size() >= 10 
+                   && request.resource.data.phone.size() <= 25
+                   && request.resource.data.email is string 
+                   && request.resource.data.email.size() <= 150
+                   && request.resource.data.tier is string
+                   && request.resource.data.status == 'new';
+
+      // Disallow public read, update, or delete to protect client privacy
+      allow read, update, delete: if false;
+    }
+
+    // Default deny for all other collections
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

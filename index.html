@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en-ZA">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BCComputers First-Reply System | Inbound Lead Automation in Paarl</title>
+  <meta name="description" content="Done-for-you first-reply system for Paarl and Cape Winelands businesses. Auto-replies to WhatsApp and website enquiries in under 2 minutes, logs every lead, and alerts the owner.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="container nav-container">
+      <a href="#hero" class="logo-group" aria-label="BCComputers Home">
+        <span class="logo-text">BCComputers</span>
+        <span class="logo-tag">First-Reply v1.0</span>
+      </a>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links" id="desktop-nav">
+          <li><a href="#problem">The Problem</a></li>
+          <li><a href="#how-it-works">How It Works</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="https://wa.me/27832542999?text=Hi%20Daylon%2C%20I%27m%20interested%20in%20the%20BCComputers%20First-Reply%20System." 
+           class="btn btn-whatsapp" 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           id="header-whatsapp-cta">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+          </svg>
+          Message Daylon
+        </a>
+      </div>
+
+      <button class="nav-toggle-btn" id="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle navigation menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div class="mobile-nav-menu" id="nav-menu">
+      <ul>
+        <li><a href="#problem">The Problem</a></li>
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#quote-form-section">Get a Quote</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+      <a href="https://wa.me/27832542999?text=Hi%20Daylon%2C%20I%27m%20interested%20in%20the%20BCComputers%20First-Reply%20System." 
+         class="btn btn-whatsapp btn-block" 
+         target="_blank" 
+         rel="noopener noreferrer" 
+         id="mobile-nav-whatsapp-cta">
+        WhatsApp: +27 83 254 2999
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="container hero-content">
+        <div class="hero-badges">
+          <span class="hero-pulse" aria-hidden="true"></span>
+          <span>Done-For-You Lead Automation · Paarl &amp; Cape Winelands</span>
+        </div>
+
+        <h1 class="hero-title">
+          Inbound WhatsApp &amp; Website Enquiries Answered in <span class="hero-highlight">2 Minutes</span>.
+        </h1>
+
+        <p class="hero-subtitle">
+          A done-for-you first-reply system that sends an automatic personal reply to every prospective client, logs every lead, and alerts you instantly so you never lose business to slow response times.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#quote-form-section" class="btn btn-primary" id="hero-quote-cta">
+            Get Your First-Reply System
+          </a>
+          <a href="https://wa.me/27832542999?text=Hi%20Daylon%2C%20I%27m%20interested%20in%20the%20BCComputers%20First-Reply%20System." 
+             class="btn btn-whatsapp" 
+             target="_blank" 
+             rel="noopener noreferrer" 
+             id="hero-whatsapp-cta">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+            </svg>
+            Message on WhatsApp (+27 83 254 2999)
+          </a>
+        </div>
+
+        <div class="hero-guarantees">
+          <span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            Live within 48 hours
+          </span>
+          <span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            30-day rolling contract
+          </span>
+          <span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            You own your data &amp; code
+          </span>
+          <span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            EFT or PayFast accepted
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- The Problem Section -->
+    <section class="section" id="problem">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-kicker">The Reality</span>
+          <h2 class="section-title">The Problem We're Solving</h2>
+          <p class="section-subtitle">Every unanswered WhatsApp enquiry is a lost client.</p>
+        </div>
+
+        <div class="problem-card">
+          <p class="problem-prompt">"When someone messages your business on WhatsApp at 7pm on a Saturday, what happens?"</p>
+          <p class="problem-answer">
+            Most of the time — nothing. Or you reply the next morning. By then, they've already messaged another business and joined somewhere else.
+          </p>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-box">
+            <div class="stat-number">78%</div>
+            <p class="stat-label">of clients choose the first business that responds to them.</p>
+          </div>
+          <div class="stat-box">
+            <div class="stat-number">40–60%</div>
+            <p class="stat-label">of after-hours enquiries are missed by the average local business.</p>
+          </div>
+          <div class="stat-box">
+            <div class="stat-number">3×</div>
+            <p class="stat-label">more conversions with a 2-minute response time vs a 2-hour delay.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="section" id="how-it-works">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-kicker">The Walkthrough</span>
+          <h2 class="section-title">How It Works in 4 Steps</h2>
+          <p class="section-subtitle">It answers the door in 2 minutes, then hands the conversation to you.</p>
+        </div>
+
+        <div class="steps-grid">
+          <div class="step-card">
+            <span class="step-number">1</span>
+            <h3 class="step-title">Inbound Enquiry</h3>
+            <p class="step-desc">A prospective customer messages your WhatsApp or submits your website contact form at any time of day or night.</p>
+          </div>
+          <div class="step-card">
+            <span class="step-number">2</span>
+            <h3 class="step-title">Instant First Reply</h3>
+            <p class="step-desc">Within 120 seconds, the system sends a personalised reply with their name, your real offer, and your approved slots.</p>
+          </div>
+          <div class="step-card">
+            <span class="step-number">3</span>
+            <h3 class="step-title">Instant Owner Alert</h3>
+            <p class="step-desc">You receive a WhatsApp notification with the lead's name, message, lead ID, and the exact reply sent.</p>
+          </div>
+          <div class="step-card">
+            <span class="step-number">4</span>
+            <h3 class="step-title">Seamless Handoff</h3>
+            <p class="step-desc">The bot goes silent the moment you respond or text <code>TAKE &lt;id&gt;</code>. You take over seamlessly.</p>
+          </div>
+        </div>
+
+        <!-- Live Walkthrough Message Preview Simulator -->
+        <div class="preview-container">
+          <div class="preview-col">
+            <div class="preview-header">
+              <span class="preview-title">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" color="var(--whatsapp-green)"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+                Customer's WhatsApp Thread
+              </span>
+              <span class="preview-badge badge-whatsapp">SLA: &lt; 120s</span>
+            </div>
+            <div class="preview-chat-body">
+              <div class="chat-bubble chat-bubble-inbound">
+                Hi, do you have beginner classes available this week?
+                <span class="chat-time">19:02</span>
+              </div>
+              <div class="chat-bubble chat-bubble-outbound">
+                Hi Sarah, thanks for reaching out to Fitness Fuzion in Paarl!<br><br>
+                We'd love to offer you a free trial class. We have the following slots available:<br>
+                • Mon 6:00am<br>
+                • Wed 6:00pm<br>
+                • Sat 8:00am<br><br>
+                Which one suits you? Just reply with your preferred time and we'll get you sorted. A team member will follow up shortly.<br><br>
+                — Fitness Fuzion
+                <span class="chat-time">19:03 (60s reply)</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="preview-col">
+            <div class="preview-header">
+              <span class="preview-title">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" color="var(--accent-cyan)"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+                Owner's WhatsApp Alert
+              </span>
+              <span class="preview-badge badge-owner">Instant Notification</span>
+            </div>
+            <div class="preview-chat-body">
+              <div class="chat-bubble chat-bubble-alert">
+                <div class="chat-meta">[NEW LEAD #1] [WHATSAPP]</div>
+                <strong>From:</strong> Sarah (082 123 4567)<br>
+                <strong>Message:</strong> Hi, do you have beginner classes available this week?<br>
+                <strong>Auto-Reply Sent:</strong> Free trial offer with Mon/Wed/Sat slots.<br><br>
+                <em>You can reply directly to Sarah now, or send <code>TAKE 1</code> to mute the bot.</em>
+                <span class="chat-time">19:03</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features vs What It Is NOT -->
+    <section class="section" id="features">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-kicker">Clarity</span>
+          <h2 class="section-title">What You Get — And What It Is NOT</h2>
+          <p class="section-subtitle">Engineered specifically to solve the first 2 minutes without complication.</p>
+        </div>
+
+        <div class="features-split">
+          <div class="feature-box">
+            <h3 class="feature-box-title">What the First-Reply System Does</h3>
+            <ul class="feature-list">
+              <li class="feature-item">
+                <svg class="feature-icon check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <div class="feature-text">
+                  <strong>Auto-reply within 2 minutes</strong>
+                  <p>Guaranteed response day or night, weekdays and weekends.</p>
+                </div>
+              </li>
+              <li class="feature-item">
+                <svg class="feature-icon check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <div class="feature-text">
+                  <strong>Personalised reply</strong>
+                  <p>Uses the enquirer's name, your verified business name, and your specific offer.</p>
+                </div>
+              </li>
+              <li class="feature-item">
+                <svg class="feature-icon check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <div class="feature-text">
+                  <strong>Shows your available slots</strong>
+                  <p>Presents your real timeslots so prospective clients can take action immediately.</p>
+                </div>
+              </li>
+              <li class="feature-item">
+                <svg class="feature-icon check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <div class="feature-text">
+                  <strong>Notifies you instantly</strong>
+                  <p>Sends an alert to your personal WhatsApp with full lead details and conversation context.</p>
+                </div>
+              </li>
+              <li class="feature-item">
+                <svg class="feature-icon check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <div class="feature-text">
+                  <strong>Seamless handoff</strong>
+                  <p>Bot steps aside the moment you reply. You stay completely in control of your clients.</p>
+                </div>
+              </li>
+              <li class="feature-item">
+                <svg class="feature-icon check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <div class="feature-text">
+                  <strong>Opt-out compliant</strong>
+                  <p>Automatically handles STOP and UNSUBSCRIBE requests immediately.</p>
+                </div>
+              </li>
+              <li class="feature-item">
+                <svg class="feature-icon check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <div class="feature-text">
+                  <strong>Leads log &amp; audit trail</strong>
+                  <p>Inspect every inbound enquiry, timestamp, response time, and SLA record.</p>
+                </div>
+              </li>
+              <li class="feature-item">
+                <svg class="feature-icon check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <div class="feature-text">
+                  <strong>No invented facts</strong>
+                  <p>System strictly uses information you approve. Never invents prices, hours, or promises.</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="feature-box">
+            <h3 class="feature-box-title">What It Is NOT</h3>
+            <ul class="feature-list">
+              <li class="feature-item">
+                <svg class="feature-icon cross" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                <div class="feature-text">
+                  <strong>Not a replacement for you</strong>
+                  <p>It does not pretend to be you or run your company — it buys you 2 minutes to respond properly.</p>
+                </div>
+              </li>
+              <li class="feature-item">
+                <svg class="feature-icon cross" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                <div class="feature-text">
+                  <strong>Not a complex chatbot</strong>
+                  <p>No fragile conversational loops or confusing AI menus. It does one thing exceptionally well: the first reply.</p>
+                </div>
+              </li>
+              <li class="feature-item">
+                <svg class="feature-icon cross" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                <div class="feature-text">
+                  <strong>Not locked to a platform</strong>
+                  <p>You own your configuration, logs, and data at all times. No proprietary lock-in.</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="section" id="pricing">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-kicker">Simple &amp; Transparent</span>
+          <h2 class="section-title">Investment &amp; Pricing</h2>
+          <p class="section-subtitle">30-day rolling contracts. Cancel with 30 days' notice. No lock-in.</p>
+        </div>
+
+        <div class="pricing-grid">
+          <!-- Tier 1 -->
+          <div class="pricing-card">
+            <div class="pricing-header">
+              <h3 class="pricing-tier-name">Starter</h3>
+              <p class="pricing-audience">Best for solo trainers and small studios with 1 WhatsApp number.</p>
+            </div>
+            <div class="pricing-price-group">
+              <div class="pricing-setup">Once-off Setup: <strong>R 1,500</strong></div>
+              <div class="pricing-retainer">
+                <span class="price-val">R 499</span>
+                <span class="price-period">/ month</span>
+              </div>
+            </div>
+            <ul class="pricing-details">
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Setup &amp; configuration for 1 business</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Reply template ready to copy-paste</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Owner training call (30 min)</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>7-day follow-up check-in</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>SLA: Template ready in 2 min (owner sends)</span>
+              </li>
+            </ul>
+            <div class="pricing-meta-costs">
+              WhatsApp Cost: R0 (Uses existing WhatsApp Business App)
+            </div>
+            <button class="btn btn-secondary btn-block" data-select-tier="starter">
+              Choose Starter
+            </button>
+          </div>
+
+          <!-- Tier 2 -->
+          <div class="pricing-card featured">
+            <span class="popular-badge">Most Popular ⭐</span>
+            <div class="pricing-header">
+              <h3 class="pricing-tier-name">Standard</h3>
+              <p class="pricing-audience">Best for established gyms and studios that want true 24/7 automation.</p>
+            </div>
+            <div class="pricing-price-group">
+              <div class="pricing-setup">Once-off Setup: <strong>R 3,500</strong></div>
+              <div class="pricing-retainer">
+                <span class="price-val">R 899</span>
+                <span class="price-period">/ month</span>
+              </div>
+            </div>
+            <ul class="pricing-details">
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Full WhatsApp Business API setup &amp; Meta assist</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Fully automated reply pipeline (under 120s)</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Instant owner WhatsApp alert with lead context</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Leads log &amp; audit history</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Owner training call (45 min) + 7 &amp; 30-day check-in</span>
+              </li>
+            </ul>
+            <div class="pricing-meta-costs">
+              WhatsApp API fees: billed by Meta (~R0.12–R0.62 per conversation)
+            </div>
+            <button class="btn btn-primary btn-block" data-select-tier="standard">
+              Choose Standard
+            </button>
+          </div>
+
+          <!-- Tier 3 -->
+          <div class="pricing-card">
+            <div class="pricing-header">
+              <h3 class="pricing-tier-name">Growth</h3>
+              <p class="pricing-audience">Best for businesses with multiple locations or multiple inquiry numbers.</p>
+            </div>
+            <div class="pricing-price-group">
+              <div class="pricing-setup">Once-off Setup: <strong>R 6,500</strong></div>
+              <div class="pricing-retainer">
+                <span class="price-val">R 1,499</span>
+                <span class="price-period">/ month</span>
+              </div>
+            </div>
+            <ul class="pricing-details">
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Everything included in Standard</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Up to 3 business locations or WhatsApp numbers</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Shared multi-channel leads log</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Monthly lead performance report</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Priority direct support</span>
+              </li>
+            </ul>
+            <div class="pricing-meta-costs">
+              WhatsApp API fees: billed by Meta per active number
+            </div>
+            <button class="btn btn-secondary btn-block" data-select-tier="growth">
+              Choose Growth
+            </button>
+          </div>
+        </div>
+
+        <!-- Optional Add-ons -->
+        <div class="addons-table-card">
+          <h3 class="addons-table-title">Optional Add-Ons</h3>
+          <div class="addons-grid">
+            <div class="addon-row">
+              <div>
+                <span class="addon-name">AI-polished replies</span>
+                <span class="addon-desc">Sounds more human, powered by OpenAI</span>
+              </div>
+              <span class="addon-price">+ R 200/mo</span>
+            </div>
+            <div class="addon-row">
+              <div>
+                <span class="addon-name">Additional location / number</span>
+                <span class="addon-desc">Scale to another branch or phone</span>
+              </div>
+              <span class="addon-price">+ R 500 setup + R 299/mo</span>
+            </div>
+            <div class="addon-row">
+              <div>
+                <span class="addon-name">Monthly leads report</span>
+                <span class="addon-desc">CSV file + executive summary email</span>
+              </div>
+              <span class="addon-price">+ R 150/mo</span>
+            </div>
+            <div class="addon-row">
+              <div>
+                <span class="addon-name">Emergency support</span>
+                <span class="addon-desc">Same-day response SLA</span>
+              </div>
+              <span class="addon-price">+ R 300/mo</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Market Context -->
+        <div class="market-context-box">
+          <strong>Why these prices?</strong> Off-the-shelf WhatsApp automation platforms in South Africa cost R 299 to R 2,000/month for rigid, generic templates. Custom agency builds cost R 7,500 to R 35,000 once-off. BCComputers sits below agency rates with direct-owner service in Paarl and zero middlemen.
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Quote / Enquiry Form -->
+    <section class="section" id="quote-form-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-kicker">Get Started</span>
+          <h2 class="section-title">Request a Quote or Consultation</h2>
+          <p class="section-subtitle">Live within 48 hours of setup payment. We handle the technical setup end-to-end.</p>
+        </div>
+
+        <div class="form-card">
+          <form id="quote-form" novalidate>
+            <div class="form-grid">
+              <div class="form-grid form-grid-2">
+                <div class="form-group">
+                  <label for="businessName" class="form-label">Business Name <span class="required" aria-hidden="true">*</span></label>
+                  <input type="text" id="businessName" name="businessName" class="form-input" placeholder="e.g. Paarl CrossFit Studio" required>
+                </div>
+                <div class="form-group">
+                  <label for="contactName" class="form-label">Your Name <span class="required" aria-hidden="true">*</span></label>
+                  <input type="text" id="contactName" name="contactName" class="form-input" placeholder="e.g. Johan Smith" required>
+                </div>
+              </div>
+
+              <div class="form-grid form-grid-2">
+                <div class="form-group">
+                  <label for="phone" class="form-label">WhatsApp Number <span class="required" aria-hidden="true">*</span></label>
+                  <input type="tel" id="phone" name="phone" class="form-input" placeholder="e.g. 082 123 4567" required>
+                </div>
+                <div class="form-group">
+                  <label for="email" class="form-label">Email Address <span class="required" aria-hidden="true">*</span></label>
+                  <input type="email" id="email" name="email" class="form-input" placeholder="e.g. johan@example.co.za" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="area" class="form-label">City / Area</label>
+                <input type="text" id="area" name="area" class="form-input" value="Paarl, Cape Winelands">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Select Preferred Tier <span class="required" aria-hidden="true">*</span></label>
+                <div class="tier-options">
+                  <label class="tier-option-label">
+                    <input type="radio" name="tier" value="starter">
+                    <span>Starter (R1,500 + R499/mo)</span>
+                  </label>
+                  <label class="tier-option-label">
+                    <input type="radio" name="tier" value="standard" checked>
+                    <span>Standard (R3,500 + R899/mo) ⭐</span>
+                  </label>
+                  <label class="tier-option-label">
+                    <input type="radio" name="tier" value="growth">
+                    <span>Growth (R6,500 + R1,499/mo)</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Optional Add-Ons</label>
+                <div class="addons-checkbox-group">
+                  <label class="checkbox-label">
+                    <input type="checkbox" name="addons" value="ai_polish">
+                    <span>AI-polished replies (+R200/mo)</span>
+                  </label>
+                  <label class="checkbox-label">
+                    <input type="checkbox" name="addons" value="extra_location">
+                    <span>Additional location (+R500 + R299/mo)</span>
+                  </label>
+                  <label class="checkbox-label">
+                    <input type="checkbox" name="addons" value="monthly_report">
+                    <span>Monthly leads report (+R150/mo)</span>
+                  </label>
+                  <label class="checkbox-label">
+                    <input type="checkbox" name="addons" value="emergency_support">
+                    <span>Emergency support SLA (+R300/mo)</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="notes" class="form-label">Current Enquiry Volume or Notes</label>
+                <textarea id="notes" name="notes" rows="3" class="form-textarea" placeholder="Tell us about your current enquiry setup, typical hours, or any specific questions..."></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-block" id="submit-btn">
+                Submit Enquiry &amp; Request Setup
+              </button>
+            </div>
+          </form>
+
+          <div id="form-status" class="form-status" role="alert" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section" id="faq">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-kicker">Answers</span>
+          <h2 class="section-title">Frequently Asked Questions</h2>
+          <p class="section-subtitle">Everything you need to know about setup, automation, and ownership.</p>
+        </div>
+
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false" id="faq-btn-1" aria-controls="faq-ans-1">
+              <span>Do I need a special WhatsApp number?</span>
+              <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="faq-answer" id="faq-ans-1" hidden>
+              Starter tier uses your existing WhatsApp Business App — no new number needed. Standard tier requires the WhatsApp Business API, which means setting up through Meta Business Manager. We guide you through this step-by-step.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false" id="faq-btn-2" aria-controls="faq-ans-2">
+              <span>What if a client messages after I've taken over?</span>
+              <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="faq-answer" id="faq-ans-2" hidden>
+              Once you reply directly, the bot stays silent for that conversation. You are always in control.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false" id="faq-btn-3" aria-controls="faq-ans-3">
+              <span>Can the bot send the wrong information?</span>
+              <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="faq-answer" id="faq-ans-3" hidden>
+              No. The system is hardcoded to only use facts from your approved configuration file. It cannot invent prices, URLs, or promises. This is by design.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false" id="faq-btn-4" aria-controls="faq-ans-4">
+              <span>What happens if someone sends STOP?</span>
+              <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="faq-answer" id="faq-ans-4" hidden>
+              They are immediately opted out. No further auto-replies are sent to that contact.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false" id="faq-btn-5" aria-controls="faq-ans-5">
+              <span>Can I have it for multiple locations?</span>
+              <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="faq-answer" id="faq-ans-5" hidden>
+              Yes — see Tier 3 (Growth) or the add-on pricing above for additional numbers and locations.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false" id="faq-btn-6" aria-controls="faq-ans-6">
+              <span>What is my monthly commitment?</span>
+              <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="faq-answer" id="faq-ans-6" hidden>
+              Monthly rolling — no lock-in contracts. Cancel anytime with 30 days' notice.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false" id="faq-btn-7" aria-controls="faq-ans-7">
+              <span>Do I own the system?</span>
+              <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="faq-answer" id="faq-ans-7" hidden>
+              Yes. The code and configuration are yours. If you ever want to self-host or manage it independently, you can.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Terms Summary Section (Section 6.11) -->
+    <section class="section" id="terms">
+      <div class="container">
+        <div class="terms-card">
+          <h3 class="terms-title">Terms &amp; Conditions Summary</h3>
+          <ul class="terms-list">
+            <li>Payment due before setup begins (EFT or PayFast)</li>
+            <li>Monthly retainer billed on the 1st of each month</li>
+            <li>30-day rolling contract — cancel anytime with 30 days' notice</li>
+            <li>WhatsApp API messaging costs (Tier 2+) are billed directly by Meta to the client</li>
+            <li>BCComputers is not liable for Meta platform changes or outages</li>
+            <li>Client owns their data and config at all times</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand-title">BCComputers</div>
+          <p class="footer-brand-desc">
+            First-Reply System v1.0 — Inbound lead automation built specifically for local gyms, studios, and businesses in Paarl and the Cape Winelands.
+          </p>
+          <p><strong>Owner:</strong> Daylon Naidoo</p>
+          <p><strong>Location:</strong> Paarl, Cape Winelands, South Africa</p>
+        </div>
+
+        <div>
+          <div class="footer-heading">Navigation</div>
+          <ul class="footer-links">
+            <li><a href="#hero">Overview</a></li>
+            <li><a href="#problem">The Problem</a></li>
+            <li><a href="#how-it-works">How It Works</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#quote-form-section">Request Quote</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-heading">Direct Contact</div>
+          <ul class="footer-links">
+            <li>
+              <a href="https://wa.me/27832542999?text=Hi%20Daylon%2C%20I%27m%20interested%20in%20the%20BCComputers%20First-Reply%20System." target="_blank" rel="noopener noreferrer">
+                WhatsApp: +27 83 254 2999
+              </a>
+            </li>
+            <li>
+              <span>Email: daylon@bccomputers.co.za [UNVERIFIED PLACEHOLDER]</span>
+            </li>
+            <li>
+              <span>Payment: EFT or PayFast</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 BCComputers. All rights reserved.</p>
+        <p>Built with plain HTML5, CSS &amp; JavaScript. Hosted on Firebase.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Mobile Sticky Quick-Action Bar -->
+  <aside class="mobile-sticky-bar" id="mobile-sticky-bar" aria-label="Quick Actions">
+    <a href="https://wa.me/27832542999?text=Hi%20Daylon%2C%20I%27m%20interested%20in%20the%20BCComputers%20First-Reply%20System." 
+       class="btn btn-whatsapp" 
+       target="_blank" 
+       rel="noopener noreferrer" 
+       id="sticky-whatsapp-cta">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+      WhatsApp Daylon
+    </a>
+    <a href="#quote-form-section" class="btn btn-primary" id="sticky-quote-cta">
+      Get a Quote
+    </a>
+  </aside>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+  <script type="module" src="js/quote-form.js"></script>
+</body>
+</html>

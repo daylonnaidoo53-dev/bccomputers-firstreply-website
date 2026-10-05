@@ -1,0 +1,12 @@
+business_name: "Fitness Fuzion"
+city: "Paarl"
+offer_name: "free trial class"
+trial_slots:
+  - "Mon 6:00am"
+  - "Wed 6:00pm"
+  - "Sat 8:00am"
+owner_whatsapp: "+27824673870"
+owner_email: "info@fitnessfuzion.co.za"
+booking_link: ""
+llm_polish: false
+sla_seconds: 120
