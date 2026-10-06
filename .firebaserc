@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "bccomputers-firstreply"
+    "default": "firstreply-pc",
+    "legacy": "bccomputers-firstreply"
   }
 }
