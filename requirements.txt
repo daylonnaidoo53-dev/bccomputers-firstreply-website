@@ -1,0 +1,15 @@
+# FirstReply PC — Core Engine Dependencies
+# Zero paid APIs required — 100% free forever
+
+fastapi>=0.115.0
+uvicorn>=0.32.0
+httpx>=0.27.0
+pydantic>=2.9.0
+
+# Optional Desktop System Tray Support
+pystray>=0.19.5
+Pillow>=10.4.0
+
+# Testing & Verification
+pytest>=8.3.0
+pytest-asyncio>=0.24.0
