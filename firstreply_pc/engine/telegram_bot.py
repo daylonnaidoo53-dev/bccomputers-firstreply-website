@@ -173,13 +173,13 @@ class TelegramBotRunner:
             return
 
         settings = database.get_all_settings()
-        business_name = settings.get("business_name", "Fitness Fuzion")
+        business_name = settings.get("business_name", "BC Computers")
 
         # Handle commands
         if text.startswith("/start"):
             welcome = (
-                f"👋 Hello {sender_name}! Welcome to <b>{business_name}</b>.\n\n"
-                f"I'm your instant AI assistant. How can we help you today? Ask about trial classes, schedules, memberships, or services!"
+                f"Hello! Welcome to <b>{business_name}</b> in Paarl.\n\n"
+                "I'm the BC Computers assistant. We provide managed IT, cloud management, IT support, and the First-Reply System. A team member will follow up personally. How can we help you? 👋"
             )
             await self.send_message(chat_id, welcome, token)
             return
@@ -187,7 +187,7 @@ class TelegramBotRunner:
         if text.startswith("/help"):
             help_txt = (
                 f"ℹ️ <b>{business_name} Assistant</b>\n\n"
-                "Just message your question naturally (e.g., 'What time are beginner classes?' or 'Can I book a session?'), and I will answer right away!"
+                "Ask about our managed IT, cloud management, IT support, or First-Reply System, and a team member will follow up with you personally."
             )
             await self.send_message(chat_id, help_txt, token)
             return
