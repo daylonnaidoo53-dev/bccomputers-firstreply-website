@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FirstReply PC — CCCO Developer &amp; Operations Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #070a12;
+      --card-bg: #0f1626;
+      --card-border: rgba(255, 255, 255, 0.08);
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent: #3b82f6;
+      --accent-glow: rgba(59, 130, 246, 0.3);
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --font-heading: 'Outfit', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      padding: 24px;
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .header-left h1 {
+      font-family: var(--font-heading);
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .header-left p {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .btn {
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid var(--card-border);
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text);
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    /* Grid Layout */
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 20px;
+    }
+
+    .col-4 { grid-column: span 4; }
+    .col-6 { grid-column: span 6; }
+    .col-8 { grid-column: span 8; }
+    .col-12 { grid-column: span 12; }
+
+    @media (max-width: 900px) {
+      .col-4, .col-6, .col-8 { grid-column: span 12; }
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 20px;
+    }
+
+    .card-title {
+      font-family: var(--font-heading);
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* Metrics Strip */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .metric-box {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 16px;
+    }
+
+    .metric-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    .metric-value {
+      font-size: 26px;
+      font-weight: 700;
+      font-family: var(--font-heading);
+      margin-top: 4px;
+    }
+
+    /* Quota Bars */
+    .quota-item {
+      margin-bottom: 14px;
+    }
+
+    .quota-info {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      margin-bottom: 6px;
+    }
+
+    .progress-bar {
+      height: 6px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 999px;
+      transition: width 0.3s;
+    }
+
+    .progress-fill.green { background: var(--success); }
+    .progress-fill.yellow { background: var(--warning); }
+
+    /* Task Board */
+    .task-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .task-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      padding: 8px 12px;
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .task-check {
+      color: var(--success);
+      font-weight: bold;
+    }
+
+    /* Table */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+
+    th {
+      text-align: left;
+      padding: 10px 12px;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--card-border);
+      font-weight: 600;
+    }
+
+    td {
+      padding: 10px 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .tag-success { background: rgba(16, 185, 129, 0.15); color: #34d399; }
+    .tag-error { background: rgba(239, 68, 68, 0.15); color: #f87171; }
+    .tag-local { background: rgba(59, 130, 246, 0.15); color: #60a5fa; }
+
+    /* Seed Buttons */
+    .seed-btn {
+      display: block;
+      width: 100%;
+      text-align: left;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--card-border);
+      color: var(--text);
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 12px;
+      margin-bottom: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .seed-btn:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: var(--accent);
+    }
+
+    /* Feature Flags */
+    .switch-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <div class="header-left">
+        <h1>FirstReply PC — CCCO Operations &amp; Dev Center</h1>
+        <p>Real-time telemetry, zero-dollar quota enforcement, prompt traces &amp; system health.</p>
+      </div>
+      <div class="header-actions">
+        <a href="/" class="btn btn-primary">Open User UI (Draft Card)</a>
+        <button id="btn-refresh" class="btn">🔄 Refresh Data</button>
+      </div>
+    </header>
+
+    <!-- Metrics Strip -->
+    <div class="metrics-grid">
+      <div class="metric-box">
+        <div class="metric-label">Core AI Cost</div>
+        <div class="metric-value" style="color: #38bdf8;">$0.00</div>
+        <div style="font-size: 11px; color: var(--text-muted); margin-top: 4px;">Free Forever Guaranteed</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-label">Local Priority</div>
+        <div class="metric-value" style="color: #34d399;" id="metric-local-status">Active</div>
+        <div style="font-size: 11px; color: var(--text-muted); margin-top: 4px;">Ollama / Deterministic fallback</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-label">Max Token Ceiling</div>
+        <div class="metric-value" id="metric-max-tokens">256</div>
+        <div style="font-size: 11px; color: var(--text-muted); margin-top: 4px;">Strict budget per reply</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-label">Replies Drafted Today</div>
+        <div class="metric-value" id="metric-reply-count">0</div>
+        <div style="font-size: 11px; color: var(--text-muted); margin-top: 4px;">100% human approved</div>
+      </div>
+    </div>
+
+    <!-- Main Grid -->
+    <div class="dashboard-grid">
+      <!-- Quota Status -->
+      <div class="col-6 card">
+        <div class="card-title">
+          <span>Free Tier Quota Manager</span>
+          <span style="font-size: 11px; color: #34d399;">Daily Free Allowances</span>
+        </div>
+        <div id="quotas-container">
+          <!-- Rendered via JS -->
+          <div style="color: var(--text-muted); font-size: 12px;">Loading quotas...</div>
+        </div>
+      </div>
+
+      <!-- Feature Flags & Router Settings -->
+      <div class="col-6 card">
+        <div class="card-title">
+          <span>Feature Flags &amp; Router Settings</span>
+          <span style="font-size: 11px; color: #94a3b8;">Owner Controls</span>
+        </div>
+        <div class="switch-row">
+          <div>
+            <strong>Enforce Local-Only (Airgapped)</strong>
+            <div style="font-size: 11px; color: var(--text-muted);">Never call external cloud free tiers.</div>
+          </div>
+          <input type="checkbox" id="toggle-local-only" style="transform: scale(1.3); cursor: pointer;">
+        </div>
+        <div class="switch-row">
+          <div>
+            <strong>Output Token Cap</strong>
+            <div style="font-size: 11px; color: var(--text-muted);">Prevent runaway multi-page completions.</div>
+          </div>
+          <span id="label-token-cap" style="font-weight: 600;">256 tokens</span>
+        </div>
+        <div class="switch-row">
+          <div>
+            <strong>Global Hotkey</strong>
+            <div style="font-size: 11px; color: var(--text-muted);">Systemwide capture shortcut.</div>
+          </div>
+          <code style="background: rgba(255,255,255,0.08); padding: 2px 6px; border-radius: 4px;">Ctrl+Shift+R</code>
+        </div>
+      </div>
+
+      <!-- Telegram Automated Customer Bot -->
+      <div class="col-6 card">
+        <div class="card-title">
+          <span>🤖 Telegram Customer Assistant</span>
+          <span id="tg-status-badge" class="tag tag-local">Checking...</span>
+        </div>
+        <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px;">
+          Automated customer support. When a customer messages your Telegram bot, it answers instantly via LLM acting as your company persona.
+        </p>
+        <div style="display: flex; gap: 8px; margin-bottom: 12px;">
+          <input type="password" id="tg-token-input" placeholder="Paste Bot Token (from @BotFather)..." style="flex: 1; background: rgba(0,0,0,0.3); border: 1px solid var(--card-border); border-radius: 6px; padding: 8px 12px; color: #fff; font-size: 12px;">
+          <button id="tg-save-btn" class="seed-btn" style="width: auto; padding: 8px 16px; margin: 0; background: var(--accent); color: #fff; font-weight: 600;">Connect</button>
+        </div>
+        <div id="tg-info" style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px;"></div>
+        <div style="display: flex; gap: 8px;">
+          <button id="tg-toggle-btn" class="seed-btn" style="flex: 1; margin: 0; text-align: center; font-weight: 600;">Start Bot</button>
+        </div>
+      </div>
+
+      <!-- Website Chat Widget & Webhook -->
+      <div class="col-6 card">
+        <div class="card-title">
+          <span>🌐 Website Chat Automation</span>
+          <span class="tag tag-success">API Live</span>
+        </div>
+        <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px;">
+          Drop this 1-line script tag into any HTML website to embed the AI floating chat widget on your site:
+        </p>
+        <pre style="background: rgba(0,0,0,0.4); padding: 10px; border-radius: 6px; font-size: 11px; overflow-x: auto; color: #38bdf8;"><code>&lt;script src="http://127.0.0.1:8123/widget.js"&gt;&lt;/script&gt;</code></pre>
+        <p style="font-size: 11px; color: var(--text-muted); margin-top: 8px;">
+          Webhook Endpoint: <code>POST http://127.0.0.1:8123/api/widget/chat</code>
+        </p>
+      </div>
+
+      <!-- Seed Scenarios Test Bench -->
+      <div class="col-4 card">
+        <div class="card-title">
+          <span>Test Bench (Seed Scenarios)</span>
+        </div>
+        <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px;">
+          Click any scenario to inject into clipboard and test instant first-reply generation:
+        </p>
+        <button class="seed-btn" onclick="injectSeed('Hi! Do you have beginner fitness classes in Paarl? I would like to try one out.')">
+          🏋️ <strong>Beginner Gym Trial Enquiry</strong><br>
+          <span style="color: #94a3b8; font-size: 11px;">Triggers booking/schedule first reply</span>
+        </button>
+        <button class="seed-btn" onclick="injectSeed('Hello Daylon, please send across a quote for 3 AI workflow automation setups for our wellness studio.')">
+          💼 <strong>Corporate Email Lead</strong><br>
+          <span style="color: #94a3b8; font-size: 11px;">Triggers professional quotation acknowledgement</span>
+        </button>
+        <button class="seed-btn" onclick="injectSeed('What are your monthly membership prices? Can I get a discount for a student?')">
+          💰 <strong>Pricing Inquiry</strong><br>
+          <span style="color: #94a3b8; font-size: 11px;">Triggers fact-grounded pricing response</span>
+        </button>
+        <button class="seed-btn" onclick="injectSeed('Our system webhook failed this morning. Can someone help fix this ASAP?')">
+          🚨 <strong>Urgent Support Request</strong><br>
+          <span style="color: #94a3b8; font-size: 11px;">Triggers reassuring triage acknowledgement</span>
+        </button>
+      </div>
+
+      <!-- Task Board & Execution Plan -->
+      <div class="col-8 card">
+        <div class="card-title">
+          <span>Project FirstReply PC — Task Board</span>
+          <span style="font-size: 11px; color: #34d399;">CCCO Directive Active</span>
+        </div>
+        <div class="task-list">
+          <div class="task-item">
+            <span class="task-check">✓</span>
+            <div><strong>Reconnaissance &amp; Manifest:</strong> Audited workspace, ground-truth mapped in <code>/docs/00-workspace-manifest.md</code>.</div>
+          </div>
+          <div class="task-item">
+            <span class="task-check">✓</span>
+            <div><strong>Quota-Aware Model Router:</strong> Priority cascading from Local Ollama to Groq, Gemini, OpenRouter, and Deterministic Offline Engine.</div>
+          </div>
+          <div class="task-item">
+            <span class="task-check">✓</span>
+            <div><strong>Zero-Dollar Quota Guard:</strong> Daily request &amp; token accounting with 95% stop thresholds. $0.00 spend lock.</div>
+          </div>
+          <div class="task-item">
+            <span class="task-check">✓</span>
+            <div><strong>Dual Interface:</strong> Desktop User UI (Floating Card) + CCCO Operations Dashboard (<code>/dev</code>).</div>
+          </div>
+          <div class="task-item">
+            <span class="task-check">✓</span>
+            <div><strong>Modular Plugins:</strong> Clipboard, WhatsApp Web, and Desktop Email connectors.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Prompt & Token Traces Table -->
+      <div class="col-12 card">
+        <div class="card-title">
+          <span>Real-Time Prompt Traces &amp; Token Latency Ledger</span>
+          <span style="font-size: 11px; color: var(--text-muted);" id="trace-count">0 recorded</span>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Timestamp</th>
+              <th>Provider</th>
+              <th>Model</th>
+              <th>Status</th>
+              <th>Latency</th>
+              <th>Tokens</th>
+              <th>Prompt Snippet</th>
+              <th>Output Snippet</th>
+            </tr>
+          </thead>
+          <tbody id="traces-body">
+            <tr>
+              <td colspan="8" style="text-align: center; color: var(--text-muted); padding: 20px;">No prompt traces logged yet.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    async function loadDashboard() {
+      // 1. Quotas
+      try {
+        const qRes = await fetch("/api/quotas");
+        const qData = await qRes.json();
+        const container = document.getElementById("quotas-container");
+        container.innerHTML = qData.quotas.map(q => {
+          const colorClass = q.is_local ? "green" : (q.pct_used > 80 ? "yellow" : "green");
+          const limitDisplay = q.is_local ? "Unlimited Local" : `${q.daily_requests_used} / ${q.daily_requests_limit} reqs`;
+          return `
+            <div class="quota-item">
+              <div class="quota-info">
+                <span><strong>${q.display_name}</strong> (${q.model})</span>
+                <span style="color: var(--text-muted);">${limitDisplay} (${100 - q.pct_used}% free)</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill ${colorClass}" style="width: ${Math.max(4, 100 - q.pct_used)}%"></div>
+              </div>
+            </div>
+          `;
+        }).join("");
+      } catch (e) {}
+
+      // 2. Settings & Feature Flags
+      try {
+        const sRes = await fetch("/api/settings");
+        const sData = await sRes.json();
+        const localToggle = document.getElementById("toggle-local-only");
+        localToggle.checked = sData.settings.local_only_mode === "true";
+        document.getElementById("metric-local-status").textContent = localToggle.checked ? "Airgapped" : "Active";
+      } catch (e) {}
+
+      // 3. Traces
+      try {
+        const tRes = await fetch("/api/traces");
+        const tData = await tRes.json();
+        const tbody = document.getElementById("traces-body");
+        document.getElementById("trace-count").textContent = `${tData.traces.length} logged`;
+        document.getElementById("metric-reply-count").textContent = tData.traces.filter(t => t.status === "SUCCESS").length;
+
+        if (tData.traces.length > 0) {
+          tbody.innerHTML = tData.traces.map(t => `
+            <tr>
+              <td>${new Date(t.timestamp).toLocaleTimeString()}</td>
+              <td><span class="tag ${t.provider === 'ollama' || t.provider === 'offline_template' ? 'tag-local' : 'tag-success'}">${t.provider}</span></td>
+              <td><code>${t.model}</code></td>
+              <td><span class="tag ${t.status === 'SUCCESS' ? 'tag-success' : 'tag-error'}">${t.status}</span></td>
+              <td><strong>${t.latency_ms}ms</strong></td>
+              <td>${t.input_tokens + t.output_tokens}</td>
+              <td style="max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${escapeHtml(t.prompt_snippet)}</td>
+              <td style="max-width: 240px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${escapeHtml(t.output_snippet)}</td>
+            </tr>
+          `).join("");
+        }
+      } catch (e) {}
+    }
+
+    // Toggle local only setting
+    document.getElementById("toggle-local-only").addEventListener("change", async (e) => {
+      await fetch("/api/settings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ key: "local_only_mode", value: e.target.checked ? "true" : "false" })
+      });
+      loadDashboard();
+    });
+
+    document.getElementById("btn-refresh").addEventListener("click", loadDashboard);
+
+    function injectSeed(text) {
+      fetch("/api/capture/copy", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text })
+      }).then(() => {
+        alert("Scenario copied to clipboard! You can now switch to the User UI to generate a draft.");
+      });
+    }
+
+    function escapeHtml(str) {
+      return (str || "").replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+    }
+
+    // Telegram Bot Integration
+    async function loadTelegramStatus() {
+      try {
+        const res = await fetch("/api/telegram/status");
+        const data = await res.json();
+        const badge = document.getElementById("tg-status-badge");
+        const info = document.getElementById("tg-info");
+        const toggleBtn = document.getElementById("tg-toggle-btn");
+
+        if (data.running) {
+          badge.className = "tag tag-success";
+          badge.textContent = "ONLINE · LISTENING";
+          toggleBtn.textContent = "Stop Bot";
+          toggleBtn.style.background = "#ef4444";
+        } else {
+          badge.className = "tag tag-local";
+          badge.textContent = data.configured ? "STOPPED" : "NOT CONFIGURED";
+          toggleBtn.textContent = "Start Bot";
+          toggleBtn.style.background = "var(--accent)";
+        }
+
+        if (data.bot_info && data.bot_info.valid) {
+          info.innerHTML = `Connected to: <strong>@${data.bot_info.username}</strong> (${data.bot_info.first_name})<br><span style="color:#34d399;">✓ Ready to receive customer messages</span>`;
+        } else if (data.bot_info && data.bot_info.error) {
+          info.innerHTML = `<span style="color:#f87171;">⚠️ ${data.bot_info.error}</span>`;
+        } else {
+          info.innerHTML = "Get a free bot token in 30s from <strong>@BotFather</strong> on Telegram.";
+        }
+      } catch (e) {}
+    }
+
+    document.getElementById("tg-save-btn").addEventListener("click", async () => {
+      const token = document.getElementById("tg-token-input").value.trim();
+      if (!token) return alert("Please paste a bot token from @BotFather");
+      await fetch("/api/settings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ key: "telegram_bot_token", value: token })
+      });
+      document.getElementById("tg-token-input").value = "";
+      await fetch("/api/telegram/start", { method: "POST" });
+      loadTelegramStatus();
+    });
+
+    document.getElementById("tg-toggle-btn").addEventListener("click", async () => {
+      const res = await fetch("/api/telegram/status");
+      const data = await res.json();
+      if (data.running) {
+        await fetch("/api/telegram/stop", { method: "POST" });
+      } else {
+        await fetch("/api/telegram/start", { method: "POST" });
+      }
+      loadTelegramStatus();
+    });
+
+    loadDashboard();
+    loadTelegramStatus();
+    setInterval(loadDashboard, 10000);
+    setInterval(loadTelegramStatus, 10000);
+  </script>
+</body>
+</html>

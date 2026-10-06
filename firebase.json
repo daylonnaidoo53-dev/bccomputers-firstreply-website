@@ -9,9 +9,15 @@
       "templates/**",
       "execution/**",
       "first-reply/**",
+      "firstreply_pc/**",
+      "docs/**",
       "drafts/**",
       "tests/**",
-      "scripts/**"
+      "scripts/**",
+      "*.bat",
+      "progress.md",
+      "*.db",
+      "*.sqlite"
     ],
     "rewrites": [
       {

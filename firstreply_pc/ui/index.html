@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FirstReply PC — Instant Desktop AI Copilot</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #090d16;
+      --card-bg: rgba(18, 24, 38, 0.85);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --accent: #2563eb;
+      --accent-hover: #3b82f6;
+      --accent-glow: rgba(37, 99, 235, 0.35);
+      --success: #10b981;
+      --success-glow: rgba(16, 185, 129, 0.25);
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 24px 16px;
+      overflow-x: hidden;
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(37, 99, 235, 0.15) 0%, transparent 60%),
+        radial-gradient(circle at 10% 80%, rgba(16, 185, 129, 0.08) 0%, transparent 40%);
+    }
+
+    .container {
+      width: 100%;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    /* Top Bar */
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-logo {
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, #2563eb, #10b981);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-family: var(--font-heading);
+      font-size: 16px;
+      box-shadow: 0 0 16px var(--accent-glow);
+    }
+
+    .brand-title {
+      font-family: var(--font-heading);
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+    }
+
+    .brand-badge {
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: rgba(16, 185, 129, 0.15);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      font-weight: 600;
+    }
+
+    .top-links {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .nav-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--card-border);
+      color: var(--text-muted);
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+
+    .nav-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--text-main);
+    }
+
+    /* Status Bar */
+    .status-strip {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 8px 14px;
+      margin-bottom: 16px;
+      font-size: 12px;
+    }
+
+    .status-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .indicator-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--success);
+      box-shadow: 0 0 8px var(--success-glow);
+    }
+
+    .indicator-dot.cloud {
+      background: var(--warning);
+      box-shadow: 0 0 8px rgba(245, 158, 11, 0.3);
+    }
+
+    /* Main Draft Card */
+    .draft-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+      padding: 24px;
+      position: relative;
+    }
+
+    .section-title {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--text-muted);
+      font-weight: 600;
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .hotkey-badge {
+      background: rgba(255, 255, 255, 0.08);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: monospace;
+      font-size: 11px;
+      color: #cbd5e1;
+    }
+
+    /* Textarea Box */
+    .input-box {
+      width: 100%;
+      height: 90px;
+      background: rgba(10, 15, 26, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      color: var(--text-main);
+      padding: 12px;
+      font-family: var(--font-body);
+      font-size: 14px;
+      line-height: 1.5;
+      resize: vertical;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .input-box:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px var(--accent-glow);
+    }
+
+    /* Tone Selector */
+    .tone-selector {
+      margin: 16px 0;
+    }
+
+    .tone-pills {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .tone-pill {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--card-border);
+      color: var(--text-muted);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      user-select: none;
+    }
+
+    .tone-pill:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text-main);
+    }
+
+    .tone-pill.active {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent-hover);
+      box-shadow: 0 0 12px var(--accent-glow);
+    }
+
+    /* Output Box */
+    .output-section {
+      margin-top: 16px;
+    }
+
+    .output-box {
+      width: 100%;
+      min-height: 140px;
+      background: rgba(10, 15, 26, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 12px;
+      color: var(--text-main);
+      padding: 16px;
+      font-family: var(--font-body);
+      font-size: 14px;
+      line-height: 1.6;
+      resize: vertical;
+      outline: none;
+      transition: all 0.2s;
+    }
+
+    .output-box:focus {
+      border-color: var(--success);
+      box-shadow: 0 0 0 2px var(--success-glow);
+    }
+
+    /* Action Bar */
+    .action-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 18px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s;
+      font-family: var(--font-body);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      color: #fff;
+      box-shadow: 0 4px 14px var(--accent-glow);
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #3b82f6, #2563eb);
+      transform: translateY(-1px);
+    }
+
+    .btn-success {
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: #fff;
+      box-shadow: 0 4px 14px var(--success-glow);
+    }
+
+    .btn-success:hover {
+      background: linear-gradient(135deg, #34d399, #10b981);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.07);
+      color: var(--text-main);
+      border: 1px solid var(--card-border);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    /* Telemetry strip */
+    .telemetry-strip {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .telemetry-tag {
+      background: rgba(255, 255, 255, 0.04);
+      padding: 3px 8px;
+      border-radius: 4px;
+      border: 1px solid var(--card-border);
+    }
+
+    /* History Drawer */
+    .history-card {
+      margin-top: 24px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 18px 20px;
+    }
+
+    .history-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .history-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-height: 220px;
+      overflow-y: auto;
+    }
+
+    .history-item {
+      background: rgba(10, 15, 26, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 8px;
+      padding: 10px 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      transition: border-color 0.2s;
+    }
+
+    .history-item:hover {
+      border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .history-text {
+      flex: 1;
+      font-size: 12px;
+      color: #cbd5e1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .history-meta {
+      font-size: 11px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .copy-toast {
+      position: fixed;
+      bottom: 24px;
+      background: #10b981;
+      color: #fff;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      box-shadow: 0 8px 20px rgba(16, 185, 129, 0.4);
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.25s ease;
+      pointer-events: none;
+    }
+
+    .copy-toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Top Bar -->
+    <header class="top-bar">
+      <div class="brand">
+        <div class="brand-logo">F</div>
+        <div>
+          <span class="brand-title">FirstReply PC</span>
+          <span class="brand-badge">Free Forever</span>
+        </div>
+      </div>
+      <div class="top-links">
+        <button id="btn-paste-clipboard" class="nav-btn">📋 Paste Clipboard</button>
+        <a href="/dev" class="nav-btn">⚡ Dev Dashboard</a>
+      </div>
+    </header>
+
+    <!-- Status Strip -->
+    <div class="status-strip">
+      <div class="status-item">
+        <span class="indicator-dot" id="privacy-dot"></span>
+        <span id="privacy-label">Local &amp; Free AI Active</span>
+      </div>
+      <div class="status-item">
+        <span style="color: #94a3b8;">Quota:</span>
+        <strong id="quota-status" style="color: #34d399;">100% Free</strong>
+      </div>
+      <div class="status-item">
+        <span style="color: #94a3b8;">Cost:</span>
+        <strong style="color: #38bdf8;">$0.00 locked</strong>
+      </div>
+      <div class="status-item">
+        <span class="hotkey-badge">Ctrl+Shift+R</span>
+      </div>
+    </div>
+
+    <!-- Main Draft Card -->
+    <div class="draft-card">
+      <!-- Input -->
+      <div class="section-title">
+        <span>Inbound Message / Highlighted Text</span>
+        <span id="char-count" style="font-weight: normal;">0 chars</span>
+      </div>
+      <textarea id="inbound-text" class="input-box" placeholder="Paste incoming WhatsApp message, enquiry email, or select text in any app..."></textarea>
+
+      <!-- Tone Selector -->
+      <div class="tone-selector">
+        <div class="section-title">Voice &amp; Tone</div>
+        <div class="tone-pills" id="tone-pills">
+          <div class="tone-pill active" data-tone="casual">Casual (WhatsApp)</div>
+          <div class="tone-pill" data-tone="professional">Professional (Email)</div>
+          <div class="tone-pill" data-tone="direct">Direct (2 Sentences)</div>
+          <div class="tone-pill" data-tone="empathetic">Empathetic &amp; Warm</div>
+          <div class="tone-pill" data-tone="urgent_booking">Booking / Trial</div>
+        </div>
+      </div>
+
+      <!-- Generated Reply -->
+      <div class="output-section">
+        <div class="section-title">
+          <span>AI First Reply Draft (Owner Editable)</span>
+          <span id="output-meta">Waiting for input...</span>
+        </div>
+        <textarea id="output-text" class="output-box" placeholder="Your reply draft will appear here instantly. Edit freely before copying."></textarea>
+      </div>
+
+      <!-- Action Bar -->
+      <div class="action-bar">
+        <div class="telemetry-strip" id="telemetry-strip">
+          <span class="telemetry-tag" id="tag-provider">Provider: Local/Offline</span>
+          <span class="telemetry-tag" id="tag-latency">Latency: --</span>
+          <span class="telemetry-tag" id="tag-tokens">Tokens: --</span>
+        </div>
+
+        <div class="btn-group">
+          <button id="btn-generate" class="btn btn-primary">
+            <span>⚡ Generate Draft</span>
+          </button>
+          <button id="btn-copy-approve" class="btn btn-success">
+            <span>✅ Copy &amp; Approve</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recent History -->
+    <div class="history-card">
+      <div class="history-header">
+        <div class="section-title" style="margin: 0;">Recent Reply Drafts</div>
+        <span id="history-count" style="font-size: 11px; color: #94a3b8;">0 logged</span>
+      </div>
+      <div class="history-list" id="history-list">
+        <div style="font-size: 12px; color: #64748b; text-align: center; padding: 12px;">No replies generated yet today.</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="copy-toast" class="copy-toast">Draft copied to clipboard!</div>
+
+  <script>
+    let activeTone = "casual";
+    let activeHistoryId = null;
+
+    const inboundInput = document.getElementById("inbound-text");
+    const outputInput = document.getElementById("output-text");
+    const charCount = document.getElementById("char-count");
+    const outputMeta = document.getElementById("output-meta");
+    const btnGenerate = document.getElementById("btn-generate");
+    const btnCopyApprove = document.getElementById("btn-copy-approve");
+    const btnPasteClipboard = document.getElementById("btn-paste-clipboard");
+    const toast = document.getElementById("copy-toast");
+    const tagProvider = document.getElementById("tag-provider");
+    const tagLatency = document.getElementById("tag-latency");
+    const tagTokens = document.getElementById("tag-tokens");
+    const privacyDot = document.getElementById("privacy-dot");
+    const privacyLabel = document.getElementById("privacy-label");
+
+    // Inbound char counter
+    inboundInput.addEventListener("input", () => {
+      charCount.textContent = `${inboundInput.value.length} chars`;
+    });
+
+    // Tone Pills Selection
+    document.querySelectorAll(".tone-pill").forEach(pill => {
+      pill.addEventListener("click", () => {
+        document.querySelectorAll(".tone-pill").forEach(p => p.classList.remove("active"));
+        pill.classList.add("active");
+        activeTone = pill.getAttribute("data-tone");
+        if (inboundInput.value.trim().length > 0) {
+          generateDraft();
+        }
+      });
+    });
+
+    // Clipboard Paste Button
+    btnPasteClipboard.addEventListener("click", async () => {
+      try {
+        const res = await fetch("/api/capture/clipboard");
+        const data = await res.json();
+        if (data.text) {
+          inboundInput.value = data.text;
+          charCount.textContent = `${data.text.length} chars`;
+          generateDraft();
+        } else {
+          showToast("Clipboard is empty");
+        }
+      } catch (err) {
+        showToast("Could not read clipboard");
+      }
+    });
+
+    // Generate Draft
+    async function generateDraft() {
+      const text = inboundInput.value.trim();
+      if (!text) {
+        outputInput.placeholder = "Please enter or paste an inbound message first.";
+        return;
+      }
+
+      btnGenerate.disabled = true;
+      btnGenerate.innerHTML = "<span>⏳ Routing...</span>";
+      outputMeta.textContent = "Querying quota router...";
+
+      try {
+        const res = await fetch("/api/generate", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            text: text,
+            tone: activeTone,
+            channel: "clipboard"
+          })
+        });
+
+        const data = await res.json();
+        if (data.success) {
+          outputInput.value = data.formatted_reply || data.reply;
+          activeHistoryId = data.history_id;
+          outputMeta.textContent = `${data.tone} draft ready`;
+
+          tagProvider.textContent = `Provider: ${data.provider} (${data.model})`;
+          tagLatency.textContent = `Latency: ${data.latency_ms}ms`;
+          tagTokens.textContent = `Tokens: ${data.tokens.total}`;
+
+          if (data.privacy === "local") {
+            privacyDot.className = "indicator-dot";
+            privacyLabel.textContent = "100% Local / Airgapped";
+          } else {
+            privacyDot.className = "indicator-dot cloud";
+            privacyLabel.textContent = "Free Cloud Fallback";
+          }
+
+          loadHistory();
+        } else {
+          outputInput.value = "Error generating draft. Please check dev dashboard.";
+        }
+      } catch (err) {
+        outputInput.value = "Connection error. Is the FirstReply PC engine running?";
+      } finally {
+        btnGenerate.disabled = false;
+        btnGenerate.innerHTML = "<span>⚡ Generate Draft</span>";
+      }
+    }
+
+    btnGenerate.addEventListener("click", generateDraft);
+
+    // Copy & Approve
+    btnCopyApprove.addEventListener("click", async () => {
+      const text = outputInput.value.trim();
+      if (!text) return;
+
+      try {
+        await fetch("/api/capture/copy", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ text })
+        });
+
+        if (activeHistoryId) {
+          fetch(`/api/history/${activeHistoryId}/action`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ action: "copy" })
+          });
+        }
+
+        showToast("Copied to clipboard!");
+      } catch (e) {
+        navigator.clipboard.writeText(text);
+        showToast("Copied!");
+      }
+    });
+
+    function showToast(msg) {
+      toast.textContent = msg;
+      toast.classList.add("show");
+      setTimeout(() => toast.classList.remove("show"), 2200);
+    }
+
+    // Keyboard Shortcuts
+    document.addEventListener("keydown", (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === "Enter") {
+        btnCopyApprove.click();
+      }
+    });
+
+    // History Loader
+    async function loadHistory() {
+      try {
+        const res = await fetch("/api/history?limit=5");
+        const data = await res.json();
+        const list = document.getElementById("history-list");
+        if (data.history && data.history.length > 0) {
+          document.getElementById("history-count").textContent = `${data.history.length} logged`;
+          list.innerHTML = data.history.map(item => `
+            <div class="history-item">
+              <div class="history-text"><strong>${item.tone}:</strong> ${escapeHtml(item.reply_text)}</div>
+              <div class="history-meta">
+                <span>${item.latency_ms}ms</span>
+                <button class="nav-btn" style="padding: 2px 8px;" onclick="restoreDraft('${escapeHtml(item.reply_text)}')">Use</button>
+              </div>
+            </div>
+          `).join("");
+        }
+      } catch (e) {}
+    }
+
+    window.restoreDraft = function(txt) {
+      outputInput.value = txt;
+      showToast("Restored to editor");
+    };
+
+    function escapeHtml(str) {
+      return (str || "").replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+    }
+
+    // Initial check
+    loadHistory();
+  </script>
+</body>
+</html>
