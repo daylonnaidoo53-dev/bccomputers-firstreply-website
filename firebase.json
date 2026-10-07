@@ -1,25 +1,20 @@
 {
   "hosting": {
-    "public": ".",
+    "public": "firstreply_pc/ui",
     "ignore": [
       "firebase.json",
       "**/.*",
-      "**/node_modules/**",
-      "directives/**",
-      "templates/**",
-      "execution/**",
-      "first-reply/**",
-      "firstreply_pc/**",
-      "docs/**",
-      "drafts/**",
-      "tests/**",
-      "scripts/**",
-      "*.bat",
-      "progress.md",
-      "*.db",
-      "*.sqlite"
+      "**/node_modules/**"
     ],
     "rewrites": [
+      {
+        "source": "/dev",
+        "destination": "/dev.html"
+      },
+      {
+        "source": "/widget.js",
+        "destination": "/widget.js"
+      },
       {
         "source": "**",
         "destination": "/index.html"
@@ -36,9 +31,5 @@
         ]
       }
     ]
-  },
-  "firestore": {
-    "rules": "firestore.rules",
-    "indexes": "firestore.indexes.json"
   }
 }

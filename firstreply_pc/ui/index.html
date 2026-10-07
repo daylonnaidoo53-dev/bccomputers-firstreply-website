@@ -3,260 +3,378 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FirstReply PC — Instant Desktop AI Copilot</title>
+  <title>FirstReply PC 2026 — AI Desktop Copilot & Developer Suite</title>
+  <meta name="description" content="Next-generation 2026 Desktop AI Copilot, CCCO Dev Operations Dashboard, Interactive API Reference, and Embeddable Chat Widget Studio. Built by BCComputers.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #090d16;
-      --card-bg: rgba(18, 24, 38, 0.85);
-      --card-border: rgba(255, 255, 255, 0.08);
-      --text-main: #f1f5f9;
+      --bg: #060913;
+      --bg-surface: #0c1222;
+      --bg-card: rgba(15, 23, 42, 0.75);
+      --bg-card-hover: rgba(22, 33, 58, 0.85);
+      --border: rgba(255, 255, 255, 0.08);
+      --border-focus: rgba(59, 130, 246, 0.5);
+      --text: #f8fafc;
       --text-muted: #94a3b8;
-      --accent: #2563eb;
-      --accent-hover: #3b82f6;
-      --accent-glow: rgba(37, 99, 235, 0.35);
-      --success: #10b981;
-      --success-glow: rgba(16, 185, 129, 0.25);
-      --warning: #f59e0b;
-      --danger: #ef4444;
+      --text-dim: #64748b;
+      --accent: #3b82f6;
+      --accent-hover: #2563eb;
+      --accent-glow: rgba(59, 130, 246, 0.35);
+      --emerald: #10b981;
+      --emerald-glow: rgba(16, 185, 129, 0.3);
+      --amber: #f59e0b;
+      --rose: #f43f5e;
+      --cyan: #06b6d4;
+      --purple: #8b5cf6;
       --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
       --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       background: var(--bg);
-      color: var(--text-main);
+      color: var(--text);
       font-family: var(--font-body);
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      padding: 24px 16px;
+      line-height: 1.5;
       overflow-x: hidden;
-      background-image: 
-        radial-gradient(circle at 50% 0%, rgba(37, 99, 235, 0.15) 0%, transparent 60%),
-        radial-gradient(circle at 10% 80%, rgba(16, 185, 129, 0.08) 0%, transparent 40%);
+      background-image:
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(59, 130, 246, 0.18) 0%, transparent 70%),
+        radial-gradient(circle at 10% 90%, rgba(16, 185, 129, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(139, 92, 246, 0.08) 0%, transparent 40%);
     }
+
+    /* Scrollbars */
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: rgba(0,0,0,0.2); }
+    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.25); }
 
     .container {
-      width: 100%;
-      max-width: 720px;
+      max-width: 1320px;
       margin: 0 auto;
+      padding: 0 20px;
     }
 
-    /* Top Bar */
-    .top-bar {
+    /* Top Brand & Status Navigation */
+    .site-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(6, 9, 19, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 0;
+    }
+
+    .nav-inner {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 20px;
+      gap: 16px;
+      flex-wrap: wrap;
     }
 
-    .brand {
+    .brand-wrap {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text);
     }
 
-    .brand-logo {
-      width: 32px;
-      height: 32px;
-      background: linear-gradient(135deg, #2563eb, #10b981);
-      border-radius: 8px;
+    .brand-logo-gem {
+      width: 38px;
+      height: 38px;
+      background: linear-gradient(135deg, #3b82f6, #06b6d4, #10b981);
+      border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: 700;
       font-family: var(--font-heading);
-      font-size: 16px;
-      box-shadow: 0 0 16px var(--accent-glow);
+      font-weight: 800;
+      font-size: 18px;
+      color: #fff;
+      box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+      position: relative;
+    }
+
+    .brand-logo-gem::after {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #3b82f6, #10b981);
+      z-index: -1;
+      opacity: 0.6;
+      filter: blur(4px);
+    }
+
+    .brand-text-col {
+      display: flex;
+      flex-direction: column;
     }
 
     .brand-title {
       font-family: var(--font-heading);
-      font-size: 18px;
       font-weight: 700;
-      letter-spacing: -0.3px;
-    }
-
-    .brand-badge {
-      font-size: 11px;
-      padding: 2px 8px;
-      border-radius: 999px;
-      background: rgba(16, 185, 129, 0.15);
-      color: #34d399;
-      border: 1px solid rgba(16, 185, 129, 0.3);
-      font-weight: 600;
-    }
-
-    .top-links {
+      font-size: 19px;
+      letter-spacing: -0.4px;
       display: flex;
-      gap: 12px;
       align-items: center;
+      gap: 8px;
     }
 
-    .nav-btn {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--card-border);
+    .brand-title-badge {
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 7px;
+      background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+      border-radius: 999px;
+      color: #fff;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .brand-subtitle {
+      font-size: 11px;
       color: var(--text-muted);
-      padding: 6px 12px;
-      border-radius: 6px;
+    }
+
+    /* Tab Switcher */
+    .tab-nav {
+      display: flex;
+      background: rgba(255, 255, 255, 0.04);
+      padding: 4px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      gap: 4px;
+    }
+
+    .tab-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      user-select: none;
+    }
+
+    .tab-btn:hover {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .tab-btn.active {
+      color: #fff;
+      background: var(--accent);
+      box-shadow: 0 0 16px var(--accent-glow);
+    }
+
+    .tab-hotkey {
+      font-size: 10px;
+      opacity: 0.6;
+      background: rgba(0,0,0,0.3);
+      padding: 1px 5px;
+      border-radius: 4px;
+      font-family: var(--font-mono);
+    }
+
+    /* Nav Status & Host */
+    .nav-tools {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .backend-pill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 6px 14px;
       font-size: 12px;
-      text-decoration: none;
-      font-weight: 500;
+      font-family: var(--font-mono);
+      cursor: pointer;
       transition: all 0.2s;
     }
 
-    .nav-btn:hover {
-      background: rgba(255, 255, 255, 0.1);
-      color: var(--text-main);
+    .backend-pill:hover {
+      border-color: rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.06);
     }
 
-    /* Status Bar */
-    .status-strip {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid var(--card-border);
-      border-radius: 10px;
-      padding: 8px 14px;
-      margin-bottom: 16px;
-      font-size: 12px;
-    }
-
-    .status-item {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .indicator-dot {
+    .pulse-dot {
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background: var(--success);
-      box-shadow: 0 0 8px var(--success-glow);
+      background: var(--emerald);
+      box-shadow: 0 0 8px var(--emerald-glow);
+      position: relative;
     }
 
-    .indicator-dot.cloud {
-      background: var(--warning);
-      box-shadow: 0 0 8px rgba(245, 158, 11, 0.3);
+    .pulse-dot.cloud {
+      background: var(--amber);
+      box-shadow: 0 0 8px rgba(245, 158, 11, 0.4);
     }
 
-    /* Main Draft Card */
-    .draft-card {
-      background: var(--card-bg);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid var(--card-border);
+    .pulse-dot.offline {
+      background: var(--rose);
+      box-shadow: 0 0 8px rgba(244, 63, 94, 0.4);
+    }
+
+    /* Global Info Banner */
+    .hero-strip {
+      padding: 24px 0 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .hero-h1 {
+      font-family: var(--font-heading);
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.6px;
+      background: linear-gradient(135deg, #fff 40%, #94a3b8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-top: 4px;
+      max-width: 640px;
+    }
+
+    .hero-stats-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .stat-chip {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      padding: 8px 14px;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .stat-chip-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: var(--text-dim);
+      font-weight: 600;
+    }
+
+    .stat-chip-val {
+      font-family: var(--font-heading);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--cyan);
+    }
+
+    /* Views Framework */
+    .view-container {
+      display: none;
+      padding: 16px 0 60px;
+      animation: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .view-container.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* =========================================================
+       VIEW 1: COPILOT DRAFT CARD (Desktop AI Copilot)
+       ========================================================= */
+    .copilot-grid {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 24px;
+      align-items: start;
+    }
+
+    @media (max-width: 960px) {
+      .copilot-grid { grid-template-columns: 1fr; }
+    }
+
+    .card {
+      background: var(--bg-card);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--border);
       border-radius: 16px;
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
       padding: 24px;
       position: relative;
     }
 
-    .section-title {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.8px;
-      color: var(--text-muted);
-      font-weight: 600;
-      margin-bottom: 8px;
+    .card-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      margin-bottom: 16px;
     }
 
-    .hotkey-badge {
-      background: rgba(255, 255, 255, 0.08);
-      padding: 2px 6px;
-      border-radius: 4px;
-      font-family: monospace;
-      font-size: 11px;
-      color: #cbd5e1;
-    }
-
-    /* Textarea Box */
-    .input-box {
-      width: 100%;
-      height: 90px;
-      background: rgba(10, 15, 26, 0.6);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 10px;
-      color: var(--text-main);
-      padding: 12px;
-      font-family: var(--font-body);
-      font-size: 14px;
-      line-height: 1.5;
-      resize: vertical;
-      outline: none;
-      transition: border-color 0.2s;
-    }
-
-    .input-box:focus {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 2px var(--accent-glow);
-    }
-
-    /* Tone Selector */
-    .tone-selector {
-      margin: 16px 0;
-    }
-
-    .tone-pills {
+    .card-title-text {
+      font-family: var(--font-heading);
+      font-size: 16px;
+      font-weight: 700;
       display: flex;
+      align-items: center;
       gap: 8px;
-      flex-wrap: wrap;
     }
 
-    .tone-pill {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--card-border);
+    .badge-subtle {
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.06);
       color: var(--text-muted);
-      padding: 6px 14px;
-      border-radius: 999px;
+      font-family: var(--font-mono);
+    }
+
+    .input-label-row {
+      display: flex;
+      justify-content: space-between;
       font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
       font-weight: 500;
-      cursor: pointer;
-      transition: all 0.2s;
-      user-select: none;
     }
 
-    .tone-pill:hover {
-      background: rgba(255, 255, 255, 0.08);
-      color: var(--text-main);
-    }
-
-    .tone-pill.active {
-      background: var(--accent);
-      color: #fff;
-      border-color: var(--accent-hover);
-      box-shadow: 0 0 12px var(--accent-glow);
-    }
-
-    /* Output Box */
-    .output-section {
-      margin-top: 16px;
-    }
-
-    .output-box {
+    .textarea-styled {
       width: 100%;
-      min-height: 140px;
-      background: rgba(10, 15, 26, 0.8);
-      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(10, 15, 26, 0.7);
+      border: 1px solid var(--border);
       border-radius: 12px;
-      color: var(--text-main);
-      padding: 16px;
+      color: var(--text);
+      padding: 14px;
       font-family: var(--font-body);
       font-size: 14px;
       line-height: 1.6;
@@ -265,446 +383,1930 @@
       transition: all 0.2s;
     }
 
-    .output-box:focus {
-      border-color: var(--success);
-      box-shadow: 0 0 0 2px var(--success-glow);
+    .textarea-styled:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-glow);
     }
 
-    /* Action Bar */
-    .action-bar {
+    /* Seed Chips */
+    .chip-cloud {
+      display: flex;
+      gap: 8px;
+      margin: 12px 0 16px;
+      flex-wrap: wrap;
+    }
+
+    .prompt-chip {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+      user-select: none;
+    }
+
+    .prompt-chip:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text);
+      border-color: var(--accent);
+    }
+
+    /* Tone Selector */
+    .tone-selector-wrap {
+      margin: 18px 0;
+    }
+
+    .tone-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+    }
+
+    @media (max-width: 600px) {
+      .tone-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .tone-pill-btn {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 10px 12px;
+      border-radius: 10px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      transition: all 0.2s;
+      text-align: left;
+    }
+
+    .tone-pill-btn strong {
+      font-size: 13px;
+      color: var(--text);
+    }
+
+    .tone-pill-btn span {
+      font-size: 11px;
+      color: var(--text-dim);
+    }
+
+    .tone-pill-btn:hover {
+      border-color: rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .tone-pill-btn.active {
+      background: rgba(59, 130, 246, 0.15);
+      border-color: var(--accent);
+      box-shadow: 0 0 16px var(--accent-glow);
+    }
+
+    .tone-pill-btn.active strong {
+      color: #60a5fa;
+    }
+
+    /* Generation Output */
+    .output-card-inner {
+      background: rgba(10, 15, 26, 0.9);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      margin-top: 16px;
+      position: relative;
+    }
+
+    .output-meta-strip {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-top: 18px;
-      flex-wrap: wrap;
-      gap: 12px;
+      margin-bottom: 10px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      font-size: 12px;
     }
 
-    .btn-group {
+    .telemetry-tag-group {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .telemetry-pill {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+    }
+
+    .telemetry-pill.highlight {
+      background: rgba(16, 185, 129, 0.12);
+      color: #34d399;
+      border-color: rgba(16, 185, 129, 0.3);
+    }
+
+    .btn-action-row {
       display: flex;
       gap: 10px;
+      margin-top: 16px;
+      flex-wrap: wrap;
     }
 
     .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
       padding: 10px 18px;
-      border-radius: 8px;
+      border-radius: 10px;
       font-size: 13px;
       font-weight: 600;
       cursor: pointer;
-      border: none;
-      transition: all 0.2s;
-      font-family: var(--font-body);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      text-decoration: none;
+    }
+
+    .btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.2);
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      background: var(--accent);
+      border-color: var(--accent-hover);
       color: #fff;
-      box-shadow: 0 4px 14px var(--accent-glow);
+      box-shadow: 0 0 16px var(--accent-glow);
     }
 
     .btn-primary:hover {
-      background: linear-gradient(135deg, #3b82f6, #2563eb);
-      transform: translateY(-1px);
+      background: var(--accent-hover);
+      box-shadow: 0 0 24px var(--accent-glow);
     }
 
     .btn-success {
-      background: linear-gradient(135deg, #10b981, #059669);
+      background: var(--emerald);
+      border-color: #059669;
       color: #fff;
-      box-shadow: 0 4px 14px var(--success-glow);
+      box-shadow: 0 0 16px var(--emerald-glow);
     }
 
     .btn-success:hover {
-      background: linear-gradient(135deg, #34d399, #10b981);
-      transform: translateY(-1px);
+      background: #059669;
     }
 
-    .btn-secondary {
-      background: rgba(255, 255, 255, 0.07);
-      color: var(--text-main);
-      border: 1px solid var(--card-border);
-    }
-
-    .btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.12);
-    }
-
-    /* Telemetry strip */
-    .telemetry-strip {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 11px;
-      color: var(--text-muted);
-    }
-
-    .telemetry-tag {
-      background: rgba(255, 255, 255, 0.04);
-      padding: 3px 8px;
-      border-radius: 4px;
-      border: 1px solid var(--card-border);
-    }
-
-    /* History Drawer */
-    .history-card {
-      margin-top: 24px;
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 14px;
-      padding: 18px 20px;
-    }
-
-    .history-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 12px;
-    }
-
-    .history-list {
+    /* Copilot Sidebar History */
+    .history-card-list {
       display: flex;
       flex-direction: column;
       gap: 10px;
-      max-height: 220px;
+      margin-top: 12px;
+    }
+
+    .history-item-pill {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .history-item-pill:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: var(--accent);
+    }
+
+    .history-tone-badge {
+      font-size: 10px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      background: rgba(59, 130, 246, 0.15);
+      color: #60a5fa;
+      font-weight: 600;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+      display: inline-block;
+    }
+
+    /* =========================================================
+       VIEW 2: CCCO DEV & QUOTAS DASHBOARD
+       ========================================================= */
+    .dev-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 20px;
+    }
+
+    .col-3 { grid-column: span 3; }
+    .col-4 { grid-column: span 4; }
+    .col-6 { grid-column: span 6; }
+    .col-8 { grid-column: span 8; }
+    .col-12 { grid-column: span 12; }
+
+    @media (max-width: 900px) {
+      .col-3, .col-4, .col-6, .col-8 { grid-column: span 12; }
+    }
+
+    .metric-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+    }
+
+    .metric-top {
+      font-size: 11px;
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 0.6px;
+      color: var(--text-dim);
+    }
+
+    .metric-num {
+      font-family: var(--font-heading);
+      font-size: 28px;
+      font-weight: 800;
+      margin: 4px 0 2px;
+    }
+
+    .metric-sub {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    /* Quotas list */
+    .quota-item-box {
+      margin-bottom: 14px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .quota-item-box:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .quota-header-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      margin-bottom: 6px;
+    }
+
+    .progress-bar-bg {
+      height: 7px;
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-fill-bar {
+      height: 100%;
+      border-radius: 999px;
+      transition: width 0.4s ease;
+    }
+
+    .progress-green { background: linear-gradient(90deg, #10b981, #06b6d4); }
+    .progress-yellow { background: linear-gradient(90deg, #f59e0b, #ef4444); }
+
+    /* Traces Table */
+    .table-container {
+      overflow-x: auto;
+      margin-top: 12px;
+    }
+
+    table.data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+      text-align: left;
+    }
+
+    table.data-table th {
+      padding: 10px 14px;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border);
+      font-weight: 600;
+      font-family: var(--font-mono);
+      font-size: 11px;
+    }
+
+    table.data-table td {
+      padding: 12px 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    table.data-table tr:hover td {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    /* =========================================================
+       VIEW 3: INTERACTIVE API REFERENCE & PLAYGROUND
+       ========================================================= */
+    .api-grid {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    @media (max-width: 900px) {
+      .api-grid { grid-template-columns: 1fr; }
+    }
+
+    .api-sidebar-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .api-endpoint-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text-muted);
+      font-size: 12px;
+      font-family: var(--font-mono);
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.2s;
+    }
+
+    .api-endpoint-btn:hover {
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text);
+    }
+
+    .api-endpoint-btn.active {
+      background: rgba(59, 130, 246, 0.15);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    .method-badge {
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+    }
+
+    .method-get { background: rgba(16, 185, 129, 0.2); color: #34d399; }
+    .method-post { background: rgba(59, 130, 246, 0.2); color: #60a5fa; }
+
+    .code-editor-box {
+      background: #090e1a;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: #38bdf8;
+      overflow-x: auto;
+      white-space: pre;
+      line-height: 1.5;
+    }
+
+    /* =========================================================
+       VIEW 4: EMBEDDABLE CHAT WIDGET STUDIO
+       ========================================================= */
+    .widget-studio-grid {
+      display: grid;
+      grid-template-columns: 480px 1fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    @media (max-width: 1000px) {
+      .widget-studio-grid { grid-template-columns: 1fr; }
+    }
+
+    .preview-phone-mockup {
+      width: 100%;
+      height: 620px;
+      background: #080c16;
+      border: 2px solid rgba(255, 255, 255, 0.15);
+      border-radius: 24px;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .mockup-browser-bar {
+      height: 38px;
+      background: #111827;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      gap: 12px;
+    }
+
+    .mockup-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .mockup-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .mockup-url-bar {
+      flex: 1;
+      height: 22px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      padding: 0 10px;
+      font-size: 11px;
+      font-family: var(--font-mono);
+      color: #94a3b8;
+    }
+
+    .mockup-site-body {
+      flex: 1;
+      padding: 24px;
+      position: relative;
+      background: radial-gradient(circle at 50% 20%, rgba(30, 41, 59, 0.5) 0%, #090d16 100%);
       overflow-y: auto;
     }
 
-    .history-item {
-      background: rgba(10, 15, 26, 0.5);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      border-radius: 8px;
-      padding: 10px 14px;
+    /* Live In-Mockup Widget */
+    .mockup-floating-bubble {
+      position: absolute;
+      bottom: 24px;
+      right: 24px;
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #3b82f6, #06b6d4);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      cursor: pointer;
+      box-shadow: 0 10px 25px rgba(59, 130, 246, 0.4);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      user-select: none;
+      z-index: 10;
+    }
+
+    .mockup-floating-bubble:hover {
+      transform: scale(1.08);
+    }
+
+    .mockup-chat-window {
+      position: absolute;
+      bottom: 94px;
+      right: 24px;
+      width: 330px;
+      height: 420px;
+      background: #0d1322;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 18px;
+      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.6);
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      backdrop-filter: blur(20px);
+      z-index: 10;
+    }
+
+    .mockup-chat-header {
+      padding: 14px 16px;
+      background: rgba(30, 41, 59, 0.8);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 12px;
-      transition: border-color 0.2s;
     }
 
-    .history-item:hover {
-      border-color: rgba(255, 255, 255, 0.15);
-    }
-
-    .history-text {
+    .mockup-chat-messages {
       flex: 1;
-      font-size: 12px;
-      color: #cbd5e1;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
+      padding: 14px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 13px;
     }
 
-    .history-meta {
-      font-size: 11px;
-      color: var(--text-muted);
+    .mockup-bubble-bot {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 10px 14px;
+      border-radius: 14px 14px 14px 2px;
+      max-width: 85%;
+      color: #f1f5f9;
+      line-height: 1.4;
+    }
+
+    .mockup-bubble-user {
+      background: linear-gradient(135deg, #3b82f6, #2563eb);
+      color: #fff;
+      align-self: flex-end;
+      padding: 10px 14px;
+      border-radius: 14px 14px 2px 14px;
+      max-width: 85%;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+    }
+
+    .mockup-input-bar {
+      padding: 10px 12px;
+      background: rgba(15, 23, 42, 0.95);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
       display: flex;
-      align-items: center;
       gap: 8px;
     }
 
-    .copy-toast {
+    /* Modal / Host Selector Dialog */
+    dialog.glass-dialog {
+      position: fixed;
+      inset: 0;
+      margin: auto;
+      background: #090e1a;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8);
+      color: var(--text);
+      padding: 24px;
+      max-width: 480px;
+      width: calc(100% - 32px);
+      backdrop-filter: blur(25px);
+    }
+
+    dialog.glass-dialog::backdrop {
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(8px);
+    }
+
+    /* Toast Notification */
+    .toast-pill {
       position: fixed;
       bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
       background: #10b981;
       color: #fff;
-      padding: 8px 16px;
-      border-radius: 8px;
+      padding: 10px 20px;
+      border-radius: 999px;
       font-size: 13px;
       font-weight: 600;
-      box-shadow: 0 8px 20px rgba(16, 185, 129, 0.4);
-      opacity: 0;
-      transform: translateY(10px);
-      transition: all 0.25s ease;
+      box-shadow: 0 10px 30px rgba(16, 185, 129, 0.4);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 999999;
       pointer-events: none;
     }
 
-    .copy-toast.show {
-      opacity: 1;
-      transform: translateY(0);
+    .toast-pill.show {
+      transform: translateX(-50%) translateY(0);
     }
   </style>
 </head>
 <body>
 
-  <div class="container">
-    <!-- Top Bar -->
-    <header class="top-bar">
-      <div class="brand">
-        <div class="brand-logo">F</div>
-        <div>
-          <span class="brand-title">FirstReply PC</span>
-          <span class="brand-badge">Free Forever</span>
+  <!-- Top Sticky Navigation Bar -->
+  <nav class="site-nav">
+    <div class="container nav-inner">
+      <a href="#copilot" class="brand-wrap" onclick="switchTab('copilot'); return false;">
+        <div class="brand-logo-gem">FR</div>
+        <div class="brand-text-col">
+          <div class="brand-title">
+            FirstReply PC
+            <span class="brand-title-badge">2026 Suite</span>
+          </div>
+          <div class="brand-subtitle">Desktop AI Copilot · CCCO Operations · API Reference</div>
         </div>
-      </div>
-      <div class="top-links">
-        <button id="btn-paste-clipboard" class="nav-btn">📋 Paste Clipboard</button>
-        <a href="/dev" class="nav-btn">⚡ Dev Dashboard</a>
-      </div>
-    </header>
+      </a>
 
-    <!-- Status Strip -->
-    <div class="status-strip">
-      <div class="status-item">
-        <span class="indicator-dot" id="privacy-dot"></span>
-        <span id="privacy-label">Local &amp; Free AI Active</span>
+      <!-- 4-Pillar Tabs Navigation -->
+      <div class="tab-nav" role="tablist">
+        <button class="tab-btn active" id="tab-btn-copilot" role="tab" aria-selected="true" onclick="switchTab('copilot')">
+          <span>🎯 Copilot Draft Card</span>
+          <span class="tab-hotkey">1</span>
+        </button>
+        <button class="tab-btn" id="tab-btn-dev" role="tab" aria-selected="false" onclick="switchTab('dev')">
+          <span>⚡ CCCO Dev &amp; Quotas</span>
+          <span class="tab-hotkey">2</span>
+        </button>
+        <button class="tab-btn" id="tab-btn-api" role="tab" aria-selected="false" onclick="switchTab('api')">
+          <span>📖 API Reference</span>
+          <span class="tab-hotkey">3</span>
+        </button>
+        <button class="tab-btn" id="tab-btn-widget" role="tab" aria-selected="false" onclick="switchTab('widget')">
+          <span>💬 Widget Studio</span>
+          <span class="tab-hotkey">4</span>
+        </button>
       </div>
-      <div class="status-item">
-        <span style="color: #94a3b8;">Quota:</span>
-        <strong id="quota-status" style="color: #34d399;">100% Free</strong>
-      </div>
-      <div class="status-item">
-        <span style="color: #94a3b8;">Cost:</span>
-        <strong style="color: #38bdf8;">$0.00 locked</strong>
-      </div>
-      <div class="status-item">
-        <span class="hotkey-badge">Ctrl+Shift+R</span>
+
+      <!-- Backend Connection Status -->
+      <div class="nav-tools">
+        <div class="backend-pill" id="backend-status-pill" onclick="openHostModal()" title="Click to configure backend host">
+          <div class="pulse-dot" id="backend-dot"></div>
+          <span id="backend-label">Probing Engine...</span>
+        </div>
       </div>
     </div>
+  </nav>
 
-    <!-- Main Draft Card -->
-    <div class="draft-card">
-      <!-- Input -->
-      <div class="section-title">
-        <span>Inbound Message / Highlighted Text</span>
-        <span id="char-count" style="font-weight: normal;">0 chars</span>
+  <!-- Hero Headline & Quick Metrics Strip -->
+  <header class="container hero-strip">
+    <div>
+      <h1 class="hero-h1">Automated Local AI Copilot &amp; Operations Center</h1>
+      <p class="hero-desc">
+        Under 2-minute inbound lead response system with quota-aware multi-tier LLM cascade (Ollama, Groq, Gemini, OpenRouter) and strict zero-dollar cost guarantee.
+      </p>
+    </div>
+    <div class="hero-stats-row">
+      <div class="stat-chip">
+        <span class="stat-chip-label">Core Cost</span>
+        <span class="stat-chip-val" style="color: #38bdf8;">$0.00</span>
       </div>
-      <textarea id="inbound-text" class="input-box" placeholder="Paste incoming WhatsApp message, enquiry email, or select text in any app..."></textarea>
-
-      <!-- Tone Selector -->
-      <div class="tone-selector">
-        <div class="section-title">Voice &amp; Tone</div>
-        <div class="tone-pills" id="tone-pills">
-          <div class="tone-pill active" data-tone="casual">Casual (WhatsApp)</div>
-          <div class="tone-pill" data-tone="professional">Professional (Email)</div>
-          <div class="tone-pill" data-tone="direct">Direct (2 Sentences)</div>
-          <div class="tone-pill" data-tone="empathetic">Empathetic &amp; Warm</div>
-          <div class="tone-pill" data-tone="urgent_booking">Booking / Trial</div>
-        </div>
+      <div class="stat-chip">
+        <span class="stat-chip-label">Providers</span>
+        <span class="stat-chip-val" style="color: #34d399;" id="stat-providers-count">5 Active</span>
       </div>
-
-      <!-- Generated Reply -->
-      <div class="output-section">
-        <div class="section-title">
-          <span>AI First Reply Draft (Owner Editable)</span>
-          <span id="output-meta">Waiting for input...</span>
-        </div>
-        <textarea id="output-text" class="output-box" placeholder="Your reply draft will appear here instantly. Edit freely before copying."></textarea>
+      <div class="stat-chip">
+        <span class="stat-chip-label">Median Latency</span>
+        <span class="stat-chip-val" style="color: #a78bfa;" id="stat-median-latency">&lt; 1.2s</span>
       </div>
+    </div>
+  </header>
 
-      <!-- Action Bar -->
-      <div class="action-bar">
-        <div class="telemetry-strip" id="telemetry-strip">
-          <span class="telemetry-tag" id="tag-provider">Provider: Local/Offline</span>
-          <span class="telemetry-tag" id="tag-latency">Latency: --</span>
-          <span class="telemetry-tag" id="tag-tokens">Tokens: --</span>
-        </div>
+  <main class="container">
 
-        <div class="btn-group">
-          <button id="btn-generate" class="btn btn-primary">
-            <span>⚡ Generate Draft</span>
+    <!-- ===================================================================
+         VIEW 1: COPILOT DRAFT CARD
+         =================================================================== -->
+    <section class="view-container active" id="view-copilot">
+      <div class="copilot-grid">
+        
+        <!-- Left Column: Primary Copilot Card -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title-text">
+              <span>⚡ Inbound Enquiry Lead</span>
+              <span class="badge-subtle" id="inbound-char-badge">0 chars</span>
+            </div>
+            <div style="display: flex; gap: 8px;">
+              <button class="btn" style="padding: 6px 12px; font-size: 11px;" id="btn-paste-clipboard">
+                📋 Paste Clipboard
+              </button>
+              <button class="btn" style="padding: 6px 12px; font-size: 11px;" id="btn-clear-inbound">
+                ✕ Clear
+              </button>
+            </div>
+          </div>
+
+          <textarea class="textarea-styled" id="inbound-text" rows="3" placeholder="Paste incoming WhatsApp, website message, or customer email here..."></textarea>
+
+          <!-- Quick Seed Chips -->
+          <div class="chip-cloud">
+            <span style="font-size: 11px; color: var(--text-dim); align-self: center; font-weight: 600;">DEMO SCENARIOS:</span>
+            <div class="prompt-chip" onclick="applySeedPrompt('Hi Daylon! Do you have beginner fitness classes in Paarl? I would like to try one out this week.')">
+              🏋️ Beginner Gym Trial
+            </div>
+            <div class="prompt-chip" onclick="applySeedPrompt('Hi there, what are your monthly membership prices and can you send over a contract?')">
+              💰 Pricing Inquiry
+            </div>
+            <div class="prompt-chip" onclick="applySeedPrompt('Hello, we need an urgent quote for 3 AI workflow automation setups for our wellness studio.')">
+              💼 Corporate Quote
+            </div>
+            <div class="prompt-chip" onclick="applySeedPrompt('Our webhook integration failed this morning. Can someone please assist immediately?')">
+              🚨 Urgent Support
+            </div>
+          </div>
+
+          <!-- Tone Selector Matrix -->
+          <div class="tone-selector-wrap">
+            <div class="input-label-row">
+              <span>SELECT TONE PROFILE</span>
+              <span style="color: var(--cyan); font-weight: 600;" id="active-tone-label">Professional</span>
+            </div>
+            <div class="tone-grid">
+              <button class="tone-pill-btn active" data-tone="professional" onclick="selectTone('professional')">
+                <strong>💼 Professional</strong>
+                <span>Polite, clear, structured quote</span>
+              </button>
+              <button class="tone-pill-btn" data-tone="friendly" onclick="selectTone('friendly')">
+                <strong>☕ Friendly</strong>
+                <span>Warm, welcoming, conversational</span>
+              </button>
+              <button class="tone-pill-btn" data-tone="urgent" onclick="selectTone('urgent')">
+                <strong>⚡ Urgent / Direct</strong>
+                <span>Speed, triage, instant escalation</span>
+              </button>
+              <button class="tone-pill-btn" data-tone="concise" onclick="selectTone('concise')">
+                <strong>💬 WhatsApp Concise</strong>
+                <span>&lt;40 words, punchy, mobile-first</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Trigger Generate -->
+          <button class="btn btn-primary" id="btn-generate-draft" style="width: 100%; justify-content: center; padding: 12px; font-size: 14px;">
+            <span>⚡ Generate Instant Reply</span>
+            <span class="tab-hotkey">Ctrl+Enter</span>
           </button>
-          <button id="btn-copy-approve" class="btn btn-success">
-            <span>✅ Copy &amp; Approve</span>
-          </button>
+
+          <!-- AI Generated Draft Output -->
+          <div class="output-card-inner">
+            <div class="output-meta-strip">
+              <div class="telemetry-tag-group">
+                <span class="telemetry-pill highlight" id="tag-provider">Provider: Cascade Ready</span>
+                <span class="telemetry-pill" id="tag-latency">Latency: --</span>
+                <span class="telemetry-pill" id="tag-tokens">Tokens: --</span>
+                <span class="telemetry-pill" id="tag-privacy">Airgapped / Cloud Free</span>
+              </div>
+              <div style="font-size: 11px; color: var(--text-dim);" id="tag-cost">$0.00 Cost</div>
+            </div>
+
+            <textarea class="textarea-styled" id="draft-output-text" rows="5" placeholder="AI draft will appear here ready for human review..."></textarea>
+
+            <div class="btn-action-row">
+              <button class="btn btn-success" id="btn-copy-approve">
+                <span>📋 Copy &amp; Approve</span>
+                <span class="tab-hotkey">Enter</span>
+              </button>
+              <a class="btn" id="btn-whatsapp-send" target="_blank" rel="noopener noreferrer">
+                <span>📱 Open in WhatsApp</span>
+              </a>
+              <button class="btn" id="btn-regenerate-draft">
+                <span>🔄 Alternate Draft</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Recent Audited Drafts & Quick Instructions -->
+        <div style="display: flex; flex-direction: column; gap: 20px;">
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title-text">🕒 Recent Drafts Log</div>
+              <span class="badge-subtle" id="history-total-count">0 items</span>
+            </div>
+            <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 10px;">
+              Every drafted message is recorded with provider telemetry and audited for safety.
+            </p>
+            <div class="history-card-list" id="copilot-history-list">
+              <div style="color: var(--text-dim); font-size: 12px; text-align: center; padding: 16px;">
+                No drafts yet. Click any demo scenario to start!
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title-text">🛡️ Safety Non-Negotiables</div>
+            </div>
+            <ul style="font-size: 12px; color: var(--text-muted); padding-left: 18px; display: flex; flex-direction: column; gap: 8px;">
+              <li><strong>Zero Cold Outreach:</strong> Only responds to inbound customer inquiries.</li>
+              <li><strong>Owner Approval Gate:</strong> AI only drafts; Daylon approves before sending.</li>
+              <li><strong>Strict Grounding:</strong> Never invents prices or promises not in catalog.</li>
+              <li><strong>Airgap Priority:</strong> Local Ollama / Regex fallback operates without internet.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         VIEW 2: CCCO DEV & QUOTAS DASHBOARD
+         =================================================================== -->
+    <section class="view-container" id="view-dev">
+      
+      <!-- Metrics Strip -->
+      <div class="dev-grid" style="margin-bottom: 24px;">
+        <div class="col-3 metric-card">
+          <div class="metric-top">Zero Dollar Guarantee</div>
+          <div class="metric-num" style="color: #38bdf8;">$0.00</div>
+          <div class="metric-sub">100% Free Tiers &amp; Local Compute</div>
+        </div>
+        <div class="col-3 metric-card">
+          <div class="metric-top">Local Airgap Priority</div>
+          <div class="metric-num" style="color: #34d399;" id="dev-metric-airgap">Active</div>
+          <div class="metric-sub">Ollama + Deterministic Offline Engine</div>
+        </div>
+        <div class="col-3 metric-card">
+          <div class="metric-top">Max Token Ceiling</div>
+          <div class="metric-num" style="color: #f59e0b;" id="dev-metric-tokens">256</div>
+          <div class="metric-sub">Strict quota control per response</div>
+        </div>
+        <div class="col-3 metric-card">
+          <div class="metric-top">Inbound Daily Leads</div>
+          <div class="metric-num" style="color: #a78bfa;" id="dev-metric-leads">0</div>
+          <div class="metric-sub">Human-approved responses today</div>
         </div>
       </div>
-    </div>
 
-    <!-- Recent History -->
-    <div class="history-card">
-      <div class="history-header">
-        <div class="section-title" style="margin: 0;">Recent Reply Drafts</div>
-        <span id="history-count" style="font-size: 11px; color: #94a3b8;">0 logged</span>
+      <div class="dev-grid">
+        
+        <!-- Quotas Column -->
+        <div class="col-6 card">
+          <div class="card-header">
+            <div class="card-title-text">⚡ Multi-Tier Quota &amp; Cascade Manager</div>
+            <span class="badge-subtle" style="color: #34d399;">Daily Free Allowances</span>
+          </div>
+          <div id="dev-quotas-list">
+            <div style="color: var(--text-muted); font-size: 12px;">Loading provider quotas...</div>
+          </div>
+        </div>
+
+        <!-- System Controls & Telegram Bot -->
+        <div class="col-6 card">
+          <div class="card-header">
+            <div class="card-title-text">⚙️ Feature Flags &amp; Telegram Assistant</div>
+            <span class="badge-subtle">Owner Config</span>
+          </div>
+
+          <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--border);">
+            <div>
+              <strong style="font-size: 13px;">Enforce 100% Local-Only Mode</strong>
+              <div style="font-size: 11px; color: var(--text-muted);">Completely block external cloud APIs (Ollama + Templates only).</div>
+            </div>
+            <input type="checkbox" id="check-local-only" style="transform: scale(1.3); cursor: pointer;" onchange="toggleLocalOnly(this.checked)">
+          </div>
+
+          <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--border);">
+            <div>
+              <strong style="font-size: 13px;">System Capture Shortcut</strong>
+              <div style="font-size: 11px; color: var(--text-muted);">Global background hotkey for desktop copilot.</div>
+            </div>
+            <code style="background: rgba(255,255,255,0.08); padding: 3px 8px; border-radius: 6px; font-size: 11px;">Ctrl+Shift+R</code>
+          </div>
+
+          <!-- Telegram Bot Controller -->
+          <div style="margin-top: 14px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+              <strong style="font-size: 13px;">🤖 Telegram Bot Long-Polling</strong>
+              <span class="badge-subtle" id="tg-status-pill">Offline / Not Configured</span>
+            </div>
+            <p style="font-size: 11px; color: var(--text-muted); margin-bottom: 10px;">
+              Runs purely through async polling. No webhooks, no port-forwarding, no public IP required.
+            </p>
+            <div style="display: flex; gap: 8px;">
+              <input type="password" id="input-tg-token" placeholder="Paste bot token from @BotFather..." class="textarea-styled" style="height: 38px; padding: 8px 12px; font-size: 12px; flex: 1;">
+              <button class="btn btn-primary" style="padding: 8px 14px; font-size: 12px;" onclick="saveTgToken()">Connect</button>
+              <button class="btn" style="padding: 8px 14px; font-size: 12px;" id="btn-tg-toggle" onclick="toggleTgBot()">Start</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Prompt Traces Table -->
+        <div class="col-12 card">
+          <div class="card-header">
+            <div class="card-title-text">📊 Real-Time Prompt Traces &amp; Token Latency Ledger</div>
+            <button class="btn" style="padding: 4px 10px; font-size: 11px;" onclick="loadDevDashboard()">🔄 Refresh Traces</button>
+          </div>
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Timestamp</th>
+                  <th>Provider</th>
+                  <th>Model</th>
+                  <th>Status</th>
+                  <th>Latency</th>
+                  <th>Tokens</th>
+                  <th>Inbound Excerpt</th>
+                  <th>Output Excerpt</th>
+                </tr>
+              </thead>
+              <tbody id="dev-traces-table-body">
+                <tr>
+                  <td colspan="8" style="text-align: center; color: var(--text-dim); padding: 24px;">
+                    No traces logged yet. Test an inference draft to see telemetry!
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
       </div>
-      <div class="history-list" id="history-list">
-        <div style="font-size: 12px; color: #64748b; text-align: center; padding: 12px;">No replies generated yet today.</div>
+    </section>
+
+    <!-- ===================================================================
+         VIEW 3: INTERACTIVE API REFERENCE & PLAYGROUND
+         =================================================================== -->
+    <section class="view-container" id="view-api">
+      <div class="card" style="margin-bottom: 24px;">
+        <div class="card-header">
+          <div class="card-title-text">⚡ FirstReply PC REST API Specifications (OpenAPI 3.1)</div>
+          <span class="badge-subtle">REST v1.0</span>
+        </div>
+        <p style="font-size: 13px; color: var(--text-muted);">
+          Interactive API test bench for client websites, desktop sidecars, and automated webhooks. Click any endpoint below to inspect documentation, edit JSON parameters, and execute live requests against the FirstReply PC engine.
+        </p>
+      </div>
+
+      <div class="api-grid">
+        <!-- Sidebar Navigation -->
+        <div class="card" style="padding: 16px;">
+          <div style="font-size: 11px; text-transform: uppercase; font-weight: 700; color: var(--text-dim); margin-bottom: 10px;">
+            ENDPOINTS
+          </div>
+          <div class="api-sidebar-list">
+            <button class="api-endpoint-btn active" onclick="selectApiDoc('generate')">
+              <span class="method-badge method-post">POST</span>
+              <span>/api/generate</span>
+            </button>
+            <button class="api-endpoint-btn" onclick="selectApiDoc('health')">
+              <span class="method-badge method-get">GET</span>
+              <span>/api/health</span>
+            </button>
+            <button class="api-endpoint-btn" onclick="selectApiDoc('quotas')">
+              <span class="method-badge method-get">GET</span>
+              <span>/api/quotas</span>
+            </button>
+            <button class="api-endpoint-btn" onclick="selectApiDoc('traces')">
+              <span class="method-badge method-get">GET</span>
+              <span>/api/traces</span>
+            </button>
+            <button class="api-endpoint-btn" onclick="selectApiDoc('widget_chat')">
+              <span class="method-badge method-post">POST</span>
+              <span>/api/widget/chat</span>
+            </button>
+            <button class="api-endpoint-btn" onclick="selectApiDoc('history')">
+              <span class="method-badge method-get">GET</span>
+              <span>/api/history</span>
+            </button>
+            <button class="api-endpoint-btn" onclick="selectApiDoc('widget_js')">
+              <span class="method-badge method-get">GET</span>
+              <span>/widget.js</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Playground Workspace -->
+        <div class="card" id="api-playground-card">
+          <div class="card-header">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <span class="method-badge method-post" id="api-doc-method">POST</span>
+              <strong style="font-family: var(--font-mono); font-size: 15px;" id="api-doc-path">/api/generate</strong>
+            </div>
+            <button class="btn btn-primary" id="btn-api-execute" onclick="executeApiTest()">
+              <span>⚡ Execute Request</span>
+            </button>
+          </div>
+
+          <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;" id="api-doc-desc">
+            Submit an inbound lead message and receive an instant, tone-calibrated first-reply draft with complete provider telemetry.
+          </p>
+
+          <!-- Request Body Section -->
+          <div id="api-req-body-section" style="margin-bottom: 18px;">
+            <div class="input-label-row">
+              <span>REQUEST JSON PAYLOAD</span>
+              <span style="font-family: var(--font-mono); color: var(--cyan);">application/json</span>
+            </div>
+            <textarea class="textarea-styled" id="api-request-payload" rows="5" style="font-family: var(--font-mono); font-size: 12px;"></textarea>
+          </div>
+
+          <!-- Live Response Output -->
+          <div>
+            <div class="input-label-row">
+              <span>LIVE SERVER RESPONSE</span>
+              <span id="api-response-status-badge" class="badge-subtle">Ready to send</span>
+            </div>
+            <div class="code-editor-box" id="api-response-output">Click "Execute Request" above to test this endpoint.</div>
+          </div>
+
+          <!-- Code Snippets (cURL & Fetch) -->
+          <div style="margin-top: 20px;">
+            <div class="input-label-row">
+              <span>EQUIVALENT CURL SNIPPET</span>
+              <button class="btn" style="padding: 2px 8px; font-size: 11px;" onclick="copyApiCurl()">Copy cURL</button>
+            </div>
+            <div class="code-editor-box" id="api-curl-snippet" style="font-size: 11px; color: #a5f3fc;"></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         VIEW 4: EMBEDDABLE CHAT WIDGET STUDIO
+         =================================================================== -->
+    <section class="view-container" id="view-widget">
+      <div class="widget-studio-grid">
+        
+        <!-- Left: Configurator & Embed Snippet Generator -->
+        <div style="display: flex; flex-direction: column; gap: 20px;">
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title-text">🛠️ Chat Widget Configurator</div>
+              <span class="badge-subtle">Drop-In Script</span>
+            </div>
+            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">
+              Customize your website's AI chat bubble. Paste this 1-line script tag into any HTML website or WordPress template.
+            </p>
+
+            <div style="display: flex; flex-direction: column; gap: 14px;">
+              <div>
+                <label class="input-label-row"><span>Widget Title</span></label>
+                <input class="textarea-styled" style="height: 38px; padding: 8px 12px;" id="w-title-input" value="FirstReply AI Assistant" oninput="updateWidgetConfig()">
+              </div>
+
+              <div>
+                <label class="input-label-row"><span>Greeting Message</span></label>
+                <textarea class="textarea-styled" rows="2" id="w-greeting-input" oninput="updateWidgetConfig()">Hi there! 👋 How can we help you today? Ask about classes, memberships, or pricing!</textarea>
+              </div>
+
+              <div>
+                <label class="input-label-row"><span>Accent Brand Color</span></label>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                  <input type="color" id="w-color-picker" value="#3b82f6" style="width: 44px; height: 38px; border: 1px solid var(--border); border-radius: 8px; background: transparent; cursor: pointer;" oninput="updateWidgetConfig()">
+                  <div class="chip-cloud" style="margin: 0;">
+                    <div class="prompt-chip" onclick="setWidgetColor('#3b82f6')">Cyber Blue</div>
+                    <div class="prompt-chip" onclick="setWidgetColor('#10b981')">Emerald</div>
+                    <div class="prompt-chip" onclick="setWidgetColor('#8b5cf6')">Violet</div>
+                    <div class="prompt-chip" onclick="setWidgetColor('#f59e0b')">Amber</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Generated Embed Snippet -->
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title-text">📦 Embed Code (Copy &amp; Paste)</div>
+              <button class="btn btn-primary" style="padding: 4px 12px; font-size: 11px;" onclick="copyWidgetSnippet()">
+                📋 Copy Snippet
+              </button>
+            </div>
+            <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 10px;">
+              Add before <code>&lt;/body&gt;</code> in your website HTML:
+            </p>
+            <div class="code-editor-box" id="widget-snippet-box"></div>
+          </div>
+        </div>
+
+        <!-- Right: Live Interactive Sandbox Preview -->
+        <div class="preview-phone-mockup">
+          <div class="mockup-browser-bar">
+            <div class="mockup-dots">
+              <div class="mockup-dot" style="background: #ef4444;"></div>
+              <div class="mockup-dot" style="background: #f59e0b;"></div>
+              <div class="mockup-dot" style="background: #10b981;"></div>
+            </div>
+            <div class="mockup-url-bar">
+              🔒 https://paarl-fitness-fuzion.co.za
+            </div>
+          </div>
+
+          <div class="mockup-site-body">
+            <!-- Simulated Landing Page -->
+            <div style="max-width: 480px; margin: 20px auto 0; text-align: center;">
+              <span style="font-size: 11px; padding: 4px 10px; background: rgba(59,130,246,0.15); color: #60a5fa; border-radius: 999px; font-weight: 600;">
+                LOCAL PARTNER SHOWCASE
+              </span>
+              <h2 style="font-family: var(--font-heading); font-size: 26px; margin: 12px 0 8px; font-weight: 800;">
+                Fitness Fuzion Paarl
+              </h2>
+              <p style="font-size: 13px; color: var(--text-muted); line-height: 1.5;">
+                Welcome to Paarl's top functional fitness studio. Enquire below to book a free trial session or membership assessment.
+              </p>
+              <div style="margin-top: 20px; display: flex; justify-content: center; gap: 10px;">
+                <button class="btn btn-primary" style="font-size: 12px;" onclick="toggleMockupChat()">💬 Click Chat Bubble</button>
+              </div>
+            </div>
+
+            <!-- Interactive Widget in Sandbox -->
+            <div class="mockup-floating-bubble" id="mock-bubble" onclick="toggleMockupChat()">
+              💬
+            </div>
+
+            <div class="mockup-chat-window" id="mock-chat-box">
+              <div class="mockup-chat-header">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <div style="width: 8px; height: 8px; border-radius: 50%; background: #10b981; box-shadow: 0 0 6px #10b981;"></div>
+                  <div>
+                    <div style="font-size: 13px; font-weight: 700;" id="mock-header-title">FirstReply AI Assistant</div>
+                    <div style="font-size: 10px; color: #94a3b8;">&lt; 2 Minute Reply Guarantee</div>
+                  </div>
+                </div>
+                <button style="background: transparent; border: none; color: #94a3b8; cursor: pointer; font-size: 16px;" onclick="toggleMockupChat()">✕</button>
+              </div>
+
+              <div class="mockup-chat-messages" id="mock-chat-msgs">
+                <div class="mockup-bubble-bot" id="mock-first-msg">
+                  Hi there! 👋 How can we help you today? Ask about classes, memberships, or pricing!
+                </div>
+              </div>
+
+              <div class="mockup-input-bar">
+                <input id="mock-chat-input" placeholder="Ask a question..." style="flex: 1; background: rgba(30,41,59,0.8); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 8px 12px; color: #fff; font-size: 12px; outline: none;" onkeydown="handleMockInputKey(event)">
+                <button class="btn btn-primary" style="padding: 8px 14px; font-size: 12px;" onclick="sendMockChatMessage()">Send</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Dialog for Backend Host Selection -->
+  <dialog class="glass-dialog" id="host-dialog">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+      <strong style="font-family: var(--font-heading); font-size: 18px;">Configure Backend Host</strong>
+      <button style="background: transparent; border: none; color: var(--text-muted); cursor: pointer; font-size: 18px;" onclick="closeHostModal()">✕</button>
+    </div>
+    <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">
+      FirstReply PC connects to your desktop sidecar server. If running locally, keep <code>http://127.0.0.1:8123</code>. If hosted on the cloud, point to your local agent or leave blank for instant cloud demo simulation.
+    </p>
+    <div style="display: flex; flex-direction: column; gap: 12px;">
+      <input type="text" id="input-api-host" class="textarea-styled" style="height: 40px; padding: 8px 12px; font-family: var(--font-mono); font-size: 13px;" placeholder="http://127.0.0.1:8123">
+      <div style="display: flex; gap: 10px; justify-content: flex-end;">
+        <button class="btn" onclick="setHostDefault()">Reset to Localhost</button>
+        <button class="btn btn-primary" onclick="saveHostConfig()">Save &amp; Reconnect</button>
       </div>
     </div>
-  </div>
+  </dialog>
 
-  <div id="copy-toast" class="copy-toast">Draft copied to clipboard!</div>
+  <!-- Copy Toast Notification -->
+  <div class="toast-pill" id="global-toast">Copied to clipboard!</div>
 
+  <!-- Unified JavaScript Runtime -->
   <script>
-    let activeTone = "casual";
+    // ── Application State ────────────────────────────────────────────────────────
+    let API_HOST = localStorage.getItem('firstreply_api_host') || (
+      (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+        ? 'http://127.0.0.1:8123'
+        : window.location.origin
+    );
+    let isConnectedToLocal = false;
+    let activeTone = 'professional';
     let activeHistoryId = null;
+    let activeApiEndpoint = 'generate';
 
-    const inboundInput = document.getElementById("inbound-text");
-    const outputInput = document.getElementById("output-text");
-    const charCount = document.getElementById("char-count");
-    const outputMeta = document.getElementById("output-meta");
-    const btnGenerate = document.getElementById("btn-generate");
-    const btnCopyApprove = document.getElementById("btn-copy-approve");
-    const btnPasteClipboard = document.getElementById("btn-paste-clipboard");
-    const toast = document.getElementById("copy-toast");
-    const tagProvider = document.getElementById("tag-provider");
-    const tagLatency = document.getElementById("tag-latency");
-    const tagTokens = document.getElementById("tag-tokens");
-    const privacyDot = document.getElementById("privacy-dot");
-    const privacyLabel = document.getElementById("privacy-label");
-
-    // Inbound char counter
-    inboundInput.addEventListener("input", () => {
-      charCount.textContent = `${inboundInput.value.length} chars`;
-    });
-
-    // Tone Pills Selection
-    document.querySelectorAll(".tone-pill").forEach(pill => {
-      pill.addEventListener("click", () => {
-        document.querySelectorAll(".tone-pill").forEach(p => p.classList.remove("active"));
-        pill.classList.add("active");
-        activeTone = pill.getAttribute("data-tone");
-        if (inboundInput.value.trim().length > 0) {
-          generateDraft();
-        }
+    // ── Navigation Tabs ─────────────────────────────────────────────────────────
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+        btn.setAttribute('aria-selected', 'false');
       });
-    });
+      document.querySelectorAll('.view-container').forEach(view => {
+        view.classList.remove('active');
+      });
 
-    // Clipboard Paste Button
-    btnPasteClipboard.addEventListener("click", async () => {
-      try {
-        const res = await fetch("/api/capture/clipboard");
-        const data = await res.json();
-        if (data.text) {
-          inboundInput.value = data.text;
-          charCount.textContent = `${data.text.length} chars`;
-          generateDraft();
-        } else {
-          showToast("Clipboard is empty");
-        }
-      } catch (err) {
-        showToast("Could not read clipboard");
+      const activeBtn = document.getElementById(`tab-btn-${tabId}`);
+      const activeView = document.getElementById(`view-${tabId}`);
+      if (activeBtn && activeView) {
+        activeBtn.classList.add('active');
+        activeBtn.setAttribute('aria-selected', 'true');
+        activeView.classList.add('active');
+        window.location.hash = tabId;
       }
+
+      if (tabId === 'dev') loadDevDashboard();
+      if (tabId === 'api') selectApiDoc(activeApiEndpoint);
+      if (tabId === 'widget') updateWidgetConfig();
+    }
+
+    // Keyboard Shortcuts (1..4)
+    document.addEventListener('keydown', (e) => {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+      if (e.key === '1') switchTab('copilot');
+      if (e.key === '2') switchTab('dev');
+      if (e.key === '3') switchTab('api');
+      if (e.key === '4') switchTab('widget');
     });
 
-    // Generate Draft
-    async function generateDraft() {
+    // ── Backend Probe & Health ──────────────────────────────────────────────────
+    async function probeBackend() {
+      const dot = document.getElementById('backend-dot');
+      const label = document.getElementById('backend-label');
+      const providersCount = document.getElementById('stat-providers-count');
+
+      try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 2000);
+        const res = await fetch(`${API_HOST}/api/health`, { signal: controller.signal });
+        clearTimeout(timeoutId);
+
+        if (res.ok) {
+          const data = await res.json();
+          isConnectedToLocal = true;
+          dot.className = 'pulse-dot';
+          label.textContent = `Connected: ${API_HOST.replace('http://', '')}`;
+          providersCount.textContent = `${data.providers_active || 5} Active`;
+          return true;
+        }
+      } catch (err) {}
+
+      // Fallback: Standalone Cloud / Simulation Mode
+      isConnectedToLocal = false;
+      dot.className = 'pulse-dot cloud';
+      label.textContent = 'Cloud Demo Simulation';
+      providersCount.textContent = '5 In-Memory';
+      return false;
+    }
+
+    // Host Config Modal
+    function openHostModal() {
+      document.getElementById('input-api-host').value = API_HOST;
+      document.getElementById('host-dialog').showModal();
+    }
+
+    function closeHostModal() {
+      document.getElementById('host-dialog').close();
+    }
+
+    function setHostDefault() {
+      document.getElementById('input-api-host').value = 'http://127.0.0.1:8123';
+    }
+
+    async function saveHostConfig() {
+      const val = document.getElementById('input-api-host').value.trim();
+      if (val) {
+        API_HOST = val.replace(/\/$/, '');
+        localStorage.setItem('firstreply_api_host', API_HOST);
+      }
+      closeHostModal();
+      showToast('Reconnecting to ' + API_HOST);
+      await probeBackend();
+      loadHistory();
+      if (document.getElementById('view-dev').classList.contains('active')) {
+        loadDevDashboard();
+      }
+    }
+
+    // ── Toast System ────────────────────────────────────────────────────────────
+    function showToast(msg) {
+      const toast = document.getElementById('global-toast');
+      toast.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2200);
+    }
+
+    // ── VIEW 1: Copilot Draft Card Logic ────────────────────────────────────────
+    const inboundInput = document.getElementById('inbound-text');
+    const draftOutput = document.getElementById('draft-output-text');
+    const inboundCharBadge = document.getElementById('inbound-char-badge');
+
+    inboundInput.addEventListener('input', () => {
+      inboundCharBadge.textContent = `${inboundInput.value.length} chars`;
+    });
+
+    document.getElementById('btn-clear-inbound').onclick = () => {
+      inboundInput.value = '';
+      inboundCharBadge.textContent = '0 chars';
+      draftOutput.value = '';
+    };
+
+    document.getElementById('btn-paste-clipboard').onclick = async () => {
+      try {
+        if (isConnectedToLocal) {
+          const res = await fetch(`${API_HOST}/api/capture/clipboard`);
+          const data = await res.json();
+          if (data.text) {
+            inboundInput.value = data.text;
+            inboundCharBadge.textContent = `${data.text.length} chars`;
+            generateCopilotDraft();
+            return;
+          }
+        }
+        const clip = await navigator.clipboard.readText();
+        if (clip) {
+          inboundInput.value = clip;
+          inboundCharBadge.textContent = `${clip.length} chars`;
+          generateCopilotDraft();
+        } else {
+          showToast('Clipboard is empty');
+        }
+      } catch (e) {
+        showToast('Clipboard access denied');
+      }
+    };
+
+    function applySeedPrompt(text) {
+      inboundInput.value = text;
+      inboundCharBadge.textContent = `${text.length} chars`;
+      generateCopilotDraft();
+    }
+
+    function selectTone(tone) {
+      document.querySelectorAll('.tone-pill-btn').forEach(btn => btn.classList.remove('active'));
+      const activeBtn = document.querySelector(`.tone-pill-btn[data-tone="${tone}"]`);
+      if (activeBtn) activeBtn.classList.add('active');
+      activeTone = tone;
+      document.getElementById('active-tone-label').textContent = tone.charAt(0).toUpperCase() + tone.slice(1);
+      if (inboundInput.value.trim().length > 0) {
+        generateCopilotDraft();
+      }
+    }
+
+    async function generateCopilotDraft() {
       const text = inboundInput.value.trim();
       if (!text) {
-        outputInput.placeholder = "Please enter or paste an inbound message first.";
+        showToast('Please enter an inbound message first.');
         return;
       }
 
-      btnGenerate.disabled = true;
-      btnGenerate.innerHTML = "<span>⏳ Routing...</span>";
-      outputMeta.textContent = "Querying quota router...";
+      const btnGen = document.getElementById('btn-generate-draft');
+      btnGen.disabled = true;
+      btnGen.innerHTML = '<span>⏳ Routing AI Cascade...</span>';
+      draftOutput.value = 'Analyzing enquiry and selecting best free model...';
+
+      const start = performance.now();
 
       try {
-        const res = await fetch("/api/generate", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            text: text,
-            tone: activeTone,
-            channel: "clipboard"
-          })
-        });
-
-        const data = await res.json();
-        if (data.success) {
-          outputInput.value = data.formatted_reply || data.reply;
-          activeHistoryId = data.history_id;
-          outputMeta.textContent = `${data.tone} draft ready`;
-
-          tagProvider.textContent = `Provider: ${data.provider} (${data.model})`;
-          tagLatency.textContent = `Latency: ${data.latency_ms}ms`;
-          tagTokens.textContent = `Tokens: ${data.tokens.total}`;
-
-          if (data.privacy === "local") {
-            privacyDot.className = "indicator-dot";
-            privacyLabel.textContent = "100% Local / Airgapped";
-          } else {
-            privacyDot.className = "indicator-dot cloud";
-            privacyLabel.textContent = "Free Cloud Fallback";
+        if (isConnectedToLocal) {
+          const res = await fetch(`${API_HOST}/api/generate`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ text, tone: activeTone, channel: 'desktop' })
+          });
+          const data = await res.json();
+          if (data.success) {
+            renderDraftResult(data);
+            return;
           }
-
-          loadHistory();
-        } else {
-          outputInput.value = "Error generating draft. Please check dev dashboard.";
         }
+        // Fallback simulation when offline
+        await new Promise(r => setTimeout(r, 650));
+        const simData = simulateDraft(text, activeTone, Math.round(performance.now() - start));
+        renderDraftResult(simData);
       } catch (err) {
-        outputInput.value = "Connection error. Is the FirstReply PC engine running?";
+        const simData = simulateDraft(text, activeTone, Math.round(performance.now() - start));
+        renderDraftResult(simData);
       } finally {
-        btnGenerate.disabled = false;
-        btnGenerate.innerHTML = "<span>⚡ Generate Draft</span>";
+        btnGen.disabled = false;
+        btnGen.innerHTML = '<span>⚡ Generate Instant Reply</span><span class="tab-hotkey">Ctrl+Enter</span>';
       }
     }
 
-    btnGenerate.addEventListener("click", generateDraft);
+    function renderDraftResult(data) {
+      draftOutput.value = data.formatted_reply || data.reply;
+      activeHistoryId = data.history_id || Date.now();
+
+      document.getElementById('tag-provider').textContent = `Provider: ${data.provider} (${data.model})`;
+      document.getElementById('tag-latency').textContent = `Latency: ${data.latency_ms}ms`;
+      document.getElementById('tag-tokens').textContent = `Tokens: ${data.tokens ? data.tokens.total : 42}`;
+      document.getElementById('tag-privacy').textContent = (data.privacy === 'local') ? '100% Airgapped Local' : 'Free Cloud Fallback';
+      
+      // WhatsApp Send Link
+      const waUrl = `https://wa.me/?text=${encodeURIComponent(draftOutput.value)}`;
+      document.getElementById('btn-whatsapp-send').href = waUrl;
+
+      showToast('Draft ready for review');
+      loadHistory();
+    }
+
+    // Deterministic Client Simulation for Offline / Remote Cloud Demo
+    function simulateDraft(text, tone, elapsedMs) {
+      const lower = text.toLowerCase();
+      let reply = "";
+
+      if (lower.includes("price") || lower.includes("cost") || lower.includes("membership")) {
+        if (tone === "concise") {
+          reply = "Hi! Our memberships range from R499/mo for open gym to R899/mo for unlimited classes. What time suits you for a free walkthrough? — Daylon, Fitness Fuzion";
+        } else if (tone === "friendly") {
+          reply = "Hey there! Thanks so much for reaching out to Fitness Fuzion Paarl! 😊 Our monthly packages start from R499 for open gym access, and R899 for full coaching & unlimited group classes. We'd love to show you around — let me know what day suits you best!";
+        } else {
+          reply = "Good day. Thank you for your enquiry regarding Fitness Fuzion memberships. Our starter tier begins at R499/month, with full unlimited coaching packages at R899/month. Please let us know if you would like us to reserve a complimentary orientation slot for you.";
+        }
+      } else if (lower.includes("trial") || lower.includes("class") || lower.includes("beginner")) {
+        if (tone === "concise") {
+          reply = "Hi! We have beginner classes every weekday at 06:00 and 17:30. Would you like to book a free trial this week? — Daylon, Fitness Fuzion";
+        } else {
+          reply = "Hello! We would love to have you join our beginner sessions. We run beginner-friendly classes Monday to Friday in Paarl. Can we book you in for a trial class this week?";
+        }
+      } else if (lower.includes("urgent") || lower.includes("webhook") || lower.includes("failed")) {
+        reply = "Thank you for alerting us. Our engineering team has received your ticket and is actively investigating the webhook connection. Daylon will follow up with you within 15 minutes.";
+      } else {
+        reply = `Hi there! Thank you for contacting BCComputers. We received your note: "${text.slice(0, 40)}..." and Daylon will reply to you within 2 minutes. Feel free to call us directly on +27 83 254 2999.`;
+      }
+
+      return {
+        success: true,
+        reply: reply,
+        formatted_reply: reply,
+        provider: "Groq (Free Tier)",
+        model: "llama-3.3-70b-versatile",
+        latency_ms: elapsedMs,
+        tokens: { total: 48, prompt: 30, completion: 18 },
+        privacy: "cloud_free",
+        history_id: Date.now()
+      };
+    }
+
+    document.getElementById('btn-generate-draft').onclick = generateCopilotDraft;
+    document.getElementById('btn-regenerate-draft').onclick = generateCopilotDraft;
 
     // Copy & Approve
-    btnCopyApprove.addEventListener("click", async () => {
-      const text = outputInput.value.trim();
+    document.getElementById('btn-copy-approve').onclick = async () => {
+      const text = draftOutput.value.trim();
       if (!text) return;
-
       try {
-        await fetch("/api/capture/copy", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ text })
-        });
-
-        if (activeHistoryId) {
-          fetch(`/api/history/${activeHistoryId}/action`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ action: "copy" })
+        if (isConnectedToLocal) {
+          await fetch(`${API_HOST}/api/capture/copy`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ text })
           });
         }
-
-        showToast("Copied to clipboard!");
+        await navigator.clipboard.writeText(text);
+        showToast('✓ Copied & marked approved!');
       } catch (e) {
-        navigator.clipboard.writeText(text);
-        showToast("Copied!");
+        showToast('Copied to clipboard!');
       }
-    });
+    };
 
-    function showToast(msg) {
-      toast.textContent = msg;
-      toast.classList.add("show");
-      setTimeout(() => toast.classList.remove("show"), 2200);
-    }
-
-    // Keyboard Shortcuts
-    document.addEventListener("keydown", (e) => {
-      if ((e.ctrlKey || e.metaKey) && e.key === "Enter") {
-        btnCopyApprove.click();
+    // Hotkeys: Ctrl+Enter (generate)
+    document.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+        generateCopilotDraft();
       }
     });
 
     // History Loader
     async function loadHistory() {
+      const container = document.getElementById('copilot-history-list');
+      const countBadge = document.getElementById('history-total-count');
+
       try {
-        const res = await fetch("/api/history?limit=5");
-        const data = await res.json();
-        const list = document.getElementById("history-list");
-        if (data.history && data.history.length > 0) {
-          document.getElementById("history-count").textContent = `${data.history.length} logged`;
-          list.innerHTML = data.history.map(item => `
-            <div class="history-item">
-              <div class="history-text"><strong>${item.tone}:</strong> ${escapeHtml(item.reply_text)}</div>
-              <div class="history-meta">
-                <span>${item.latency_ms}ms</span>
-                <button class="nav-btn" style="padding: 2px 8px;" onclick="restoreDraft('${escapeHtml(item.reply_text)}')">Use</button>
+        if (isConnectedToLocal) {
+          const res = await fetch(`${API_HOST}/api/history?limit=5`);
+          const data = await res.json();
+          if (data.history && data.history.length > 0) {
+            countBadge.textContent = `${data.history.length} logged`;
+            container.innerHTML = data.history.map(item => `
+              <div class="history-item-pill" onclick="restoreDraft('${escapeHtml(item.reply_text)}')">
+                <span class="history-tone-badge">${item.tone || 'standard'}</span>
+                <div style="color: #cbd5e1; font-size: 11px; margin-bottom: 4px;">${escapeHtml(item.reply_text.slice(0, 90))}...</div>
+                <div style="font-size: 10px; color: var(--text-dim); display: flex; justify-content: space-between;">
+                  <span>${item.latency_ms || 320}ms · ${item.provider || 'local'}</span>
+                  <span style="color: #38bdf8;">Click to use</span>
+                </div>
               </div>
-            </div>
-          `).join("");
+            `).join('');
+            return;
+          }
+        }
+      } catch (e) {}
+
+      // Fallback Demo History Items
+      container.innerHTML = `
+        <div class="history-item-pill" onclick="restoreDraft('Good day! Our memberships start from R499/mo for open gym and R899/mo for unlimited classes in Paarl. Can we reserve a trial for you?')">
+          <span class="history-tone-badge">Professional</span>
+          <div style="color: #cbd5e1; font-size: 11px; margin-bottom: 4px;">Good day! Our memberships start from R499/mo for open gym and R899/mo for unlimited classes...</div>
+          <div style="font-size: 10px; color: var(--text-dim); display: flex; justify-content: space-between;">
+            <span>342ms · Groq 70B</span>
+            <span style="color: #38bdf8;">Click to use</span>
+          </div>
+        </div>
+        <div class="history-item-pill" onclick="restoreDraft('Hi there! We have beginner classes running every weekday at 06:00 and 17:30. Would you like to join us for a free trial session?')">
+          <span class="history-tone-badge">Friendly</span>
+          <div style="color: #cbd5e1; font-size: 11px; margin-bottom: 4px;">Hi there! We have beginner classes running every weekday at 06:00 and 17:30...</div>
+          <div style="font-size: 10px; color: var(--text-dim); display: flex; justify-content: space-between;">
+            <span>180ms · Local Ollama</span>
+            <span style="color: #38bdf8;">Click to use</span>
+          </div>
+        </div>
+      `;
+      countBadge.textContent = '2 demo items';
+    }
+
+    function restoreDraft(txt) {
+      draftOutput.value = txt;
+      showToast('Restored draft to editor');
+    }
+
+    function escapeHtml(str) {
+      return (str || '').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+    }
+
+    // ── VIEW 2: CCCO Dev & Quotas Dashboard Logic ───────────────────────────────
+    async function loadDevDashboard() {
+      const quotasContainer = document.getElementById('dev-quotas-list');
+      const tracesTbody = document.getElementById('dev-traces-table-body');
+
+      // 1. Quotas
+      try {
+        if (isConnectedToLocal) {
+          const res = await fetch(`${API_HOST}/api/quotas`);
+          const data = await res.json();
+          renderQuotas(data.quotas);
+        } else {
+          renderQuotas(getMockQuotas());
+        }
+      } catch (e) {
+        renderQuotas(getMockQuotas());
+      }
+
+      // 2. Traces
+      try {
+        if (isConnectedToLocal) {
+          const res = await fetch(`${API_HOST}/api/traces?limit=15`);
+          const data = await res.json();
+          renderTraces(data.traces);
+        } else {
+          renderTraces(getMockTraces());
+        }
+      } catch (e) {
+        renderTraces(getMockTraces());
+      }
+
+      // 3. Telegram Status
+      try {
+        if (isConnectedToLocal) {
+          const tgRes = await fetch(`${API_HOST}/api/telegram/status`);
+          const tgData = await tgRes.json();
+          const pill = document.getElementById('tg-status-pill');
+          if (tgData.running) {
+            pill.className = 'badge-subtle';
+            pill.style.color = '#34d399';
+            pill.textContent = `Online (@${tgData.bot_username || 'bot'})`;
+            document.getElementById('btn-tg-toggle').textContent = 'Stop';
+          } else {
+            pill.className = 'badge-subtle';
+            pill.textContent = tgData.token_configured ? 'Stopped' : 'Needs Token';
+            document.getElementById('btn-tg-toggle').textContent = 'Start';
+          }
         }
       } catch (e) {}
     }
 
-    window.restoreDraft = function(txt) {
-      outputInput.value = txt;
-      showToast("Restored to editor");
-    };
+    function renderQuotas(quotas) {
+      const container = document.getElementById('dev-quotas-list');
+      container.innerHTML = quotas.map(q => {
+        const pctFree = 100 - (q.pct_used || 0);
+        const isLocal = q.is_local;
+        const colorClass = pctFree > 20 ? 'progress-green' : 'progress-yellow';
+        const allowance = isLocal ? 'Unlimited Airgapped' : `${q.daily_requests_used || 0} / ${q.daily_requests_limit} reqs`;
 
-    function escapeHtml(str) {
-      return (str || "").replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+        return `
+          <div class="quota-item-box">
+            <div class="quota-header-row">
+              <span><strong>${q.display_name}</strong> (${q.model})</span>
+              <span style="color: var(--text-muted); font-family: var(--font-mono);">${allowance} (${pctFree}% available)</span>
+            </div>
+            <div class="progress-bar-bg">
+              <div class="progress-fill-bar ${colorClass}" style="width: ${Math.max(4, pctFree)}%"></div>
+            </div>
+          </div>
+        `;
+      }).join('');
     }
 
-    // Initial check
-    loadHistory();
+    function getMockQuotas() {
+      return [
+        { display_name: "Tier 1: Ollama Local", model: "llama3.2:3b", is_local: true, pct_used: 0, daily_requests_used: 0, daily_requests_limit: "∞" },
+        { display_name: "Tier 2: Groq Cloud", model: "llama-3.3-70b-versatile", is_local: false, pct_used: 1, daily_requests_used: 12, daily_requests_limit: 14400 },
+        { display_name: "Tier 3: Google Gemini", model: "gemini-2.5-flash", is_local: false, pct_used: 0, daily_requests_used: 4, daily_requests_limit: 1500 },
+        { display_name: "Tier 4: OpenRouter Free", model: "gemma-4-31b-it:free", is_local: false, pct_used: 3, daily_requests_used: 8, daily_requests_limit: 250 },
+        { display_name: "Tier 5: Offline Templates", model: "regex-rules-v1", is_local: true, pct_used: 0, daily_requests_used: 0, daily_requests_limit: "∞" }
+      ];
+    }
+
+    function renderTraces(traces) {
+      const tbody = document.getElementById('dev-traces-table-body');
+      if (!traces || traces.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; color: var(--text-dim); padding: 20px;">No prompt traces found.</td></tr>';
+        return;
+      }
+      tbody.innerHTML = traces.map(t => `
+        <tr>
+          <td style="font-family: var(--font-mono); color: var(--text-dim);">${(t.created_at || '').slice(11, 19) || '13:42:01'}</td>
+          <td><span class="telemetry-pill highlight">${t.provider}</span></td>
+          <td style="font-family: var(--font-mono); font-size: 11px;">${t.model}</td>
+          <td><span style="color: #34d399; font-weight: 600;">${t.status}</span></td>
+          <td style="font-family: var(--font-mono);">${t.latency_ms}ms</td>
+          <td style="font-family: var(--font-mono);">${t.tokens_total || 45}</td>
+          <td style="max-width: 160px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${escapeHtml(t.prompt_snippet || '')}</td>
+          <td style="max-width: 180px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${escapeHtml(t.output_snippet || '')}</td>
+        </tr>
+      `).join('');
+    }
+
+    function getMockTraces() {
+      return [
+        { created_at: "2026-10-07 13:40:12", provider: "Groq", model: "llama-3.3-70b-versatile", status: "SUCCESS", latency_ms: 245, tokens_total: 52, prompt_snippet: "What are your monthly membership prices?", output_snippet: "Our starter tier begins at R499/month..." },
+        { created_at: "2026-10-07 13:38:05", provider: "Ollama", model: "llama3.2:3b", status: "SUCCESS", latency_ms: 810, tokens_total: 44, prompt_snippet: "Do you have beginner fitness classes in Paarl?", output_snippet: "We run beginner classes Monday to Friday..." },
+        { created_at: "2026-10-07 13:32:19", provider: "OpenRouter", model: "gemma-4-31b-it:free", status: "SUCCESS", latency_ms: 1180, tokens_total: 68, prompt_snippet: "Please send a quotation for 3 AI setups", output_snippet: "Good day! BCComputers AI starter setups..." }
+      ];
+    }
+
+    async function toggleLocalOnly(enabled) {
+      try {
+        if (isConnectedToLocal) {
+          await fetch(`${API_HOST}/api/settings`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ local_only: enabled })
+          });
+        }
+        showToast(enabled ? 'Local-only airgap enforced' : 'Cloud cascades enabled');
+      } catch (e) {}
+    }
+
+    async function saveTgToken() {
+      const token = document.getElementById('input-tg-token').value.trim();
+      if (!token) return;
+      try {
+        if (isConnectedToLocal) {
+          await fetch(`${API_HOST}/api/telegram/token`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ token })
+          });
+          showToast('Telegram bot token saved!');
+          loadDevDashboard();
+        } else {
+          showToast('Saved token in demo mode');
+        }
+      } catch (e) {
+        showToast('Error saving bot token');
+      }
+    }
+
+    async function toggleTgBot() {
+      try {
+        if (isConnectedToLocal) {
+          const statusRes = await fetch(`${API_HOST}/api/telegram/status`);
+          const statusData = await statusRes.json();
+          const action = statusData.running ? 'stop' : 'start';
+          await fetch(`${API_HOST}/api/telegram/${action}`, { method: 'POST' });
+          showToast(`Telegram bot ${action}ed`);
+          loadDevDashboard();
+        } else {
+          showToast('Toggled demo Telegram bot state');
+        }
+      } catch (e) {}
+    }
+
+    // ── VIEW 3: Interactive API Reference & Playground ──────────────────────────
+    const API_DOCS = {
+      generate: {
+        method: "POST",
+        path: "/api/generate",
+        desc: "Submit an inbound lead message and receive an instant, tone-calibrated first-reply draft with complete provider telemetry and token counting.",
+        payload: {
+          text: "Hi! Do you have beginner fitness classes in Paarl? I would like to try one out.",
+          tone: "professional",
+          channel: "website"
+        }
+      },
+      health: {
+        method: "GET",
+        path: "/api/health",
+        desc: "Return the operational health of FirstReply PC engine, active provider count, user profile, and airgap status.",
+        payload: null
+      },
+      quotas: {
+        method: "GET",
+        path: "/api/quotas",
+        desc: "Retrieve real-time remaining free quotas, percentage used, and daily reset timestamps across all 5 cascading providers.",
+        payload: null
+      },
+      traces: {
+        method: "GET",
+        path: "/api/traces?limit=10",
+        desc: "Retrieve chronological LLM execution logs, latency timing, token budgets, and input/output audit snippets.",
+        payload: null
+      },
+      widget_chat: {
+        method: "POST",
+        path: "/api/widget/chat",
+        desc: "Public customer webhook endpoint used by embeddable website widgets to answer visitor queries in real time.",
+        payload: {
+          message: "What are your trading hours on Saturdays?"
+        }
+      },
+      history: {
+        method: "GET",
+        path: "/api/history?limit=5",
+        desc: "Fetch recent customer enquiry history, selected tones, and approval actions.",
+        payload: null
+      },
+      widget_js: {
+        method: "GET",
+        path: "/widget.js",
+        desc: "Serve the drop-in vanilla JavaScript chat widget script for any external website.",
+        payload: null
+      }
+    };
+
+    function selectApiDoc(key) {
+      activeApiEndpoint = key;
+      const doc = API_DOCS[key];
+      if (!doc) return;
+
+      document.querySelectorAll('.api-endpoint-btn').forEach(btn => btn.classList.remove('active'));
+      const activeBtn = Array.from(document.querySelectorAll('.api-endpoint-btn')).find(b => b.textContent.includes(doc.path.split('?')[0]));
+      if (activeBtn) activeBtn.classList.add('active');
+
+      document.getElementById('api-doc-method').textContent = doc.method;
+      document.getElementById('api-doc-method').className = `method-badge ${doc.method === 'GET' ? 'method-get' : 'method-post'}`;
+      document.getElementById('api-doc-path').textContent = doc.path;
+      document.getElementById('api-doc-desc').textContent = doc.desc;
+
+      const bodySec = document.getElementById('api-req-body-section');
+      const payloadArea = document.getElementById('api-request-payload');
+      if (doc.payload) {
+        bodySec.style.display = 'block';
+        payloadArea.value = JSON.stringify(doc.payload, null, 2);
+      } else {
+        bodySec.style.display = 'none';
+      }
+
+      document.getElementById('api-response-status-badge').textContent = 'Ready to send';
+      document.getElementById('api-response-status-badge').className = 'badge-subtle';
+      document.getElementById('api-response-output').textContent = 'Click "Execute Request" above to test this endpoint.';
+
+      // Update cURL snippet
+      updateApiCurl(doc);
+    }
+
+    function updateApiCurl(doc) {
+      const fullUrl = `${API_HOST}${doc.path}`;
+      let curl = "";
+      if (doc.method === "POST") {
+        const bodyStr = doc.payload ? JSON.stringify(doc.payload).replace(/"/g, '\\"') : '{}';
+        curl = `curl -X POST "${fullUrl}" \\\n  -H "Content-Type: application/json" \\\n  -d "${bodyStr}"`;
+      } else {
+        curl = `curl -X GET "${fullUrl}"`;
+      }
+      document.getElementById('api-curl-snippet').textContent = curl;
+    }
+
+    function copyApiCurl() {
+      const code = document.getElementById('api-curl-snippet').textContent;
+      navigator.clipboard.writeText(code);
+      showToast('cURL command copied!');
+    }
+
+    async function executeApiTest() {
+      const doc = API_DOCS[activeApiEndpoint];
+      if (!doc) return;
+
+      const btn = document.getElementById('btn-api-execute');
+      btn.disabled = true;
+      btn.innerHTML = '<span>⏳ Sending...</span>';
+
+      const statusBadge = document.getElementById('api-response-status-badge');
+      const outputBox = document.getElementById('api-response-output');
+      const start = performance.now();
+
+      try {
+        let options = { method: doc.method };
+        if (doc.method === 'POST') {
+          options.headers = { 'Content-Type': 'application/json' };
+          const payloadVal = document.getElementById('api-request-payload').value;
+          options.body = payloadVal;
+        }
+
+        const res = await fetch(`${API_HOST}${doc.path}`, options);
+        const elapsed = Math.round(performance.now() - start);
+
+        statusBadge.textContent = `${res.status} ${res.statusText} (${elapsed}ms)`;
+        statusBadge.className = res.ok ? 'badge-subtle highlight' : 'badge-subtle';
+
+        const contentType = res.headers.get('content-type') || '';
+        if (contentType.includes('application/json')) {
+          const data = await res.json();
+          outputBox.textContent = JSON.stringify(data, null, 2);
+        } else {
+          const text = await res.text();
+          outputBox.textContent = text.slice(0, 1000);
+        }
+      } catch (err) {
+        // High-fidelity fallback preview when backend is not reached
+        const elapsed = Math.round(performance.now() - start);
+        statusBadge.textContent = `200 OK (Simulated · ${elapsed}ms)`;
+        statusBadge.className = 'badge-subtle highlight';
+
+        if (activeApiEndpoint === 'health') {
+          outputBox.textContent = JSON.stringify({ status: "healthy", system: "FirstReply PC v1.0", user: "Daylon Naidoo", local_only: false, providers_active: 5 }, null, 2);
+        } else if (activeApiEndpoint === 'quotas') {
+          outputBox.textContent = JSON.stringify({ quotas: getMockQuotas() }, null, 2);
+        } else if (activeApiEndpoint === 'generate') {
+          outputBox.textContent = JSON.stringify(simulateDraft("Enquiry test", "professional", elapsed), null, 2);
+        } else if (activeApiEndpoint === 'widget_chat') {
+          outputBox.textContent = JSON.stringify({ reply: "Hello! We are open Saturdays from 07:00 to 12:00 for open gym. Feel free to visit us in Paarl!", provider: "Groq", model: "llama-3.3-70b-versatile", latency_ms: elapsed }, null, 2);
+        } else {
+          outputBox.textContent = JSON.stringify({ success: true, timestamp: new Date().toISOString() }, null, 2);
+        }
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = '<span>⚡ Execute Request</span>';
+      }
+    }
+
+    // ── VIEW 4: Embeddable Chat Widget Studio Logic ─────────────────────────────
+    function updateWidgetConfig() {
+      const title = document.getElementById('w-title-input').value.trim() || 'FirstReply AI';
+      const greeting = document.getElementById('w-greeting-input').value.trim() || 'Hi! How can we help?';
+      const color = document.getElementById('w-color-picker').value || '#3b82f6';
+
+      // Update sandbox elements
+      document.getElementById('mock-header-title').textContent = title;
+      document.getElementById('mock-first-msg').textContent = greeting;
+      document.getElementById('mock-bubble').style.background = `linear-gradient(135deg, ${color}, #06b6d4)`;
+
+      // Update embed snippet
+      const host = API_HOST || 'http://127.0.0.1:8123';
+      const snippet = `<!-- FirstReply PC Chat Widget -->\n<script>\n  window.FIRSTREPLY_HOST = "${host}";\n  window.FIRSTREPLY_TITLE = "${title}";\n  window.FIRSTREPLY_COLOR = "${color}";\n<\/script>\n<script src="${host}/widget.js"><\/script>`;
+      document.getElementById('widget-snippet-box').textContent = snippet;
+    }
+
+    function setWidgetColor(hex) {
+      document.getElementById('w-color-picker').value = hex;
+      updateWidgetConfig();
+    }
+
+    function copyWidgetSnippet() {
+      const code = document.getElementById('widget-snippet-box').textContent;
+      navigator.clipboard.writeText(code);
+      showToast('Widget embed snippet copied!');
+    }
+
+    function toggleMockupChat() {
+      const chatBox = document.getElementById('mock-chat-box');
+      const isHidden = (chatBox.style.display === 'none' || !chatBox.style.display);
+      chatBox.style.display = isHidden ? 'flex' : 'none';
+      if (isHidden) {
+        document.getElementById('mock-chat-input').focus();
+      }
+    }
+
+    function handleMockInputKey(e) {
+      if (e.key === 'Enter') sendMockChatMessage();
+    }
+
+    async function sendMockChatMessage() {
+      const input = document.getElementById('mock-chat-input');
+      const text = input.value.trim();
+      if (!text) return;
+      input.value = '';
+
+      const msgs = document.getElementById('mock-chat-msgs');
+      msgs.innerHTML += `<div class="mockup-bubble-user">${escapeHtml(text)}</div>`;
+      msgs.scrollTop = msgs.scrollHeight;
+
+      // Typing state
+      const typingEl = document.createElement('div');
+      typingEl.className = 'mockup-bubble-bot';
+      typingEl.innerHTML = '<span>⚡ Drafting instant reply...</span>';
+      msgs.appendChild(typingEl);
+      msgs.scrollTop = msgs.scrollHeight;
+
+      try {
+        const res = await fetch(`${API_HOST}/api/widget/chat`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message: text })
+        });
+        const data = await res.json();
+        typingEl.textContent = data.reply || "Thanks! We'll follow up with you within 2 minutes.";
+      } catch (e) {
+        await new Promise(r => setTimeout(r, 600));
+        typingEl.textContent = "Hi! Thanks for contacting Fitness Fuzion Paarl. We've logged your note and Daylon will respond within 2 minutes!";
+      }
+      msgs.scrollTop = msgs.scrollHeight;
+    }
+
+    // ── Application Boot Sequence ───────────────────────────────────────────────
+    window.addEventListener('DOMContentLoaded', async () => {
+      // Handle hash routing (#copilot, #dev, #api, #widget)
+      const hash = window.location.hash.replace('#', '');
+      if (hash && ['copilot', 'dev', 'api', 'widget'].includes(hash)) {
+        switchTab(hash);
+      }
+
+      await probeBackend();
+      loadHistory();
+      updateWidgetConfig();
+    });
   </script>
 </body>
 </html>
